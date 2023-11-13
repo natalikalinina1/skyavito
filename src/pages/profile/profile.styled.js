@@ -10,7 +10,7 @@ export const Heading = styled.h2`
   font-weight: 500;
   font-size: 32px;
   line-height: 220%;
-  color: #000000;
+  color: ${({ theme }) => theme.colors.black};
 `
 
 export const AccountForm = styled.form`
@@ -34,7 +34,7 @@ export const Image = styled.div`
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    color: #009ee4;
+    color: ${({ theme }) => theme.colors.primaryBlue};
     cursor: pointer;
   }
 `

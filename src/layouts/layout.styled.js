@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  background: #009ee4;
+  background: ${({ theme }) => theme.colors.primaryBlue};
   width: 100%;
 `;
 

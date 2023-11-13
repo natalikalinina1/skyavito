@@ -38,7 +38,7 @@ export const AddDetails = styled.div`
     font-weight: 700;
     font-size: 32px;
     line-height: 140%;
-    color: #000000;
+    color:  ${({ theme }) => theme.colors.black};
     max-width: 621px;
 
     margin: 0 0 10px 0;
@@ -48,7 +48,7 @@ export const AddDetails = styled.div`
     font-weight: 700;
     font-size: 28px;
     line-height: 140%;
-    color: #000000;
+    color:  ${({ theme }) => theme.colors.black};
     margin: 0 0 20px 0;
   }
 
@@ -58,7 +58,7 @@ export const AddDetails = styled.div`
       font-size: 16px;
       line-height: 140%;
       text-align: center;
-      color: #ffffff;
+      color: ${({ theme }) => theme.colors.white};
       max-width: 241px;
 
       margin: 0 0 4px 0;
@@ -73,7 +73,7 @@ export const AddItemInfo = styled.div`
     font-weight: 400;
     font-size: 16px;
     line-height: 130%;
-    color: #009ee4;
+    color: ${({ theme }) => theme.colors.primaryBlue};
   }
 `
 
@@ -81,7 +81,7 @@ export const Text = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 130%;
-  color: #5f5f5f;
+  color: ${({ theme }) => theme.colors.graniteGray};
   margin: 0 0 4px 0;
 `
 
@@ -97,7 +97,7 @@ export const SellerLink = styled(Link)`
   font-weight: 600;
   font-size: 20px;
   line-height: 130%;
-  color: #009ee4;
+  color:  ${({ theme }) => theme.colors.primaryBlue};
 `
 
 export const SellerImg = styled.div`
@@ -113,14 +113,14 @@ export const AddDescription = styled.div`
     font-weight: 500;
     font-size: 32px;
     line-height: 220%;
-    color: #000000;
+    color:${({ theme }) => theme.colors.black};
   }
 
   p {
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    color: #000000;
+    color: ${({ theme }) => theme.colors.black};
 
     max-width: 792px;
   }
