@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const CardContainer = styled.div`
   display: flex;
@@ -9,12 +9,18 @@ export const CardContainer = styled.div`
   column-gap: 26px;
   row-gap: 40px;
   margin: 43px auto;
+  cursor: pointer;
 `
 
-export const Card = styled.div`
+export const Card = styled(Link)`
   display: flex;
   flex-direction: column;
   width: 270px;
+  transition: transform 1s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `
 
 export const Image = styled.div`
@@ -25,21 +31,26 @@ export const Image = styled.div`
   border-radius: 5px;
 `
 
-export const CardLink = styled(NavLink)`
+export const CardName = styled.p`
   font-size: 22px;
   line-height: 120%;
   color: #009ee4;
   margin: 0 0 10px 0;
+  height: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const CardPrice = styled.p`
   font-size: 22px;
   line-height: 150%;
   margin: 0 0 10px 0;
+  color: #000;
 `
 
 export const CardPlace = styled.p`
   font-size: 16px;
   line-height: 130%;
   color: #5f5f5f;
-  margin: 0 0 4px 0;`
+  margin: 0 0 4px 0;
+`

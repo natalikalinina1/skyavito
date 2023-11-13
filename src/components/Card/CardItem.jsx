@@ -1,15 +1,19 @@
 import * as S from "./card.styled";
 
-const CardItem = () => {
+const CardItem = ({ id }) => {
+  const item = {
+    name: "Ракетка для большого тенниса Triumph Pro ST...",
+    price: "2 200 ₽",
+    city: "Санкт Петербург",
+    timeStamp: "Сегодня в 10:45",
+  };
   return (
-    <S.Card>
+    <S.Card to={`/add/${id}`}>
       <S.Image></S.Image>
-      <S.CardLink to="/card">
-        Ракетка для большого тенниса Triumph Pro ST...
-      </S.CardLink>
-      <S.CardPrice>2 200 ₽</S.CardPrice>
-      <S.CardPlace>Санкт Петербург</S.CardPlace>
-      <S.CardPlace>Сегодня в 10:45</S.CardPlace>
+      <S.CardName title={item.name}>{item.name}</S.CardName>
+      <S.CardPrice>{item.price}</S.CardPrice>
+      <S.CardPlace>{item.city}</S.CardPlace>
+      <S.CardPlace>{item.timeStamp}</S.CardPlace>
     </S.Card>
   );
 };
