@@ -7,13 +7,12 @@ export const StyledButton = styled.button`
   background: #009ee4;
   border-radius: 6px;
   border: 1px solid #ffffff;
-  padding: ${(props) => props.padding};
-  margin: ${(props) => props.margin};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
 
-  
   color: #ffffff;
 
   &:hover {
-    background-color: ${(props) => props.hoverColor};
+    background-color: ${({ hoverColor }) => hoverColor};
   }
 `

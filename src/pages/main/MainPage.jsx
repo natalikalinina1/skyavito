@@ -3,7 +3,7 @@ import * as S from './mainPage.styled'
 
 const MainPage = () => {
   return (
-    <div>
+    <div >
       <S.Title>Объявления</S.Title>
       <Card count="8" />
     </div>
