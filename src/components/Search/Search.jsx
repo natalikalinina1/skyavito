@@ -22,23 +22,11 @@ const Search = () => {
             width={"100%"}
           />
 
-          <Button
-            hoverColor={"#0080C1"}
-            padding={"13px 37px"}
-            margin={"0 0  0 10px"}
-          >
-            Найти
-          </Button>
+           <Button margin={'0 0  0 10px'}>Найти</Button>
         </>
       ) : (
         <Link to="/">
-          <Button
-            hoverColor={"#0080C1"}
-            padding={"13px 37px"}
-            margin={"0 0  0 10px"}
-          >
-            Вернуться на главную
-          </Button>
+           <Button margin={'0 0  0 10px'}>Вернуться на главную</Button>
         </Link>
       )}
     </S.SearchContainer>

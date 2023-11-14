@@ -52,18 +52,6 @@ export const AddDetails = styled.div`
     margin: 0 0 20px 0;
   }
 
-  button {
-    p {
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 140%;
-      text-align: center;
-      color: ${({ theme }) => theme.colors.white};
-      max-width: 241px;
-
-      margin: 0 0 4px 0;
-    }
-  }
 `
 
 export const AddItemInfo = styled.div`

@@ -1,5 +1,5 @@
 import Card from '../../components/Card/Card'
-import Button from '../../components/Buttons/Button'
+import ButtonWithPhone  from '../../components/Buttons/ButtonWithPhone'
 import * as S from './Seller.styled';
 
 const Seller = () => {
@@ -7,7 +7,7 @@ const Seller = () => {
     sellerName: 'Кирилл Матвеев',
     city: 'Санкт-Петербург',
     sellerOnSiteSince: 'Продает товары с августа 2021',
-    phone: '8 909xxxxxxx',
+    phone: '89600125523',
   }
   return (
     <>
@@ -18,10 +18,7 @@ const Seller = () => {
           <S.SellerName>{seller.sellerName}</S.SellerName>
           <S.SellerPlace>{seller.city}</S.SellerPlace>
           <S.SellerPlace>{seller.sellerOnSiteSince}</S.SellerPlace>   
-          <Button hoverColor="#0080C1" padding={'10px 37px'}>
-            <p> Показать телефон </p>
-            <span>8 905 ХХХ ХХ ХХ</span>
-          </Button>
+          <ButtonWithPhone phoneNumber={seller.phone}></ButtonWithPhone>
         </S.SellerDetails>
       </S.SellerInfo>
       <S.Heading>Товары продавца</S.Heading>

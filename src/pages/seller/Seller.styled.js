@@ -31,15 +31,6 @@ export const SellerImage = styled.div`
 export const SellerDetails = styled.div`
   button {
     margin-top: 30px;
-    p {
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 140%;
-      text-align: center;
-      color: ${({ theme }) => theme.colors.white};
-      max-width: 241px;
-      margin: 0 0 4px 0;
-    }
   }
 `
 
