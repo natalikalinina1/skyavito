@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import * as S  from "./layout.styled";
-import Button from "../components/Buttons/Button";
+import ButtonHeader from '../components/Buttons/ButtonHeader'
 import Search from "../components/Search/Search";
 
 const Layout = () => {
@@ -11,32 +11,22 @@ const Layout = () => {
       {user ? (
           <S.Nav>
             <Link to="place-add">
-              <Button
-                hoverColor="rgba(255, 255, 255, 0.15)"
-                padding={'8px 24px'}
-                margin={'0 10px'}
-              >
+            <ButtonHeader margin={'0 10px'}>
                 Разместить объявление
-              </Button>
+              </ButtonHeader>
             </Link>
             <Link to="profile">
-              <Button
-                hoverColor="rgba(255, 255, 255, 0.15)"
-                padding={'8px 24px'}
-              >
+              <ButtonHeader>
                 Личный кабинет
-              </Button>
+              </ButtonHeader>
             </Link>
           </S.Nav>
         ) : (
           <S.Nav>
             <Link to="profile">
-              <Button
-                hoverColor="rgba(255, 255, 255, 0.15)"
-                padding={'8px 24px'}
-              >
+              <ButtonHeader>
                 Вход в личный кабинет
-              </Button>
+              </ButtonHeader>
             </Link>
           </S.Nav>
         )}

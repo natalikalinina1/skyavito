@@ -34,7 +34,7 @@ export const Image = styled.div`
 export const CardName = styled.p`
   font-size: 22px;
   line-height: 120%;
-  color: #009ee4;
+  color: ${({ theme }) => theme.colors.primaryBlue};
   margin: 0 0 10px 0;
   height: 52px;
   overflow: hidden;
@@ -45,12 +45,12 @@ export const CardPrice = styled.p`
   font-size: 22px;
   line-height: 150%;
   margin: 0 0 10px 0;
-  color: #000;
+  color:  ${({ theme }) => theme.colors.black};
 `
 
 export const CardPlace = styled.p`
   font-size: 16px;
   line-height: 130%;
-  color: #5f5f5f;
+  color: ${({ theme }) => theme.colors.black};
   margin: 0 0 4px 0;
 `

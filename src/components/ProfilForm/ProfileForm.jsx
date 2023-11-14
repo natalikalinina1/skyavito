@@ -59,10 +59,7 @@ const ProfileForm = ({ person }) => {
             />
           </div>
         </S.Inputs>
-
-        <Button hoverColor="#0080C1" padding="13px 37px" margin="30px 0  0 0">
-          Сохранить
-        </Button>
+        <Button margin="30px 0  0 0">Сохранить</Button>
       </S.Data>
     </S.AccountForm>
   );
