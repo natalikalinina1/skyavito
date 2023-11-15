@@ -1,10 +1,9 @@
 import * as S from './addCard.styled'; 
-
-
-
+import Button from '../../components/Buttons/Button';
 import ButtonWithPhone from "../../components/Buttons/ButtonWithPhone";
 
 const AddCard = () => {
+  const user = false
   const item = {
     name: "Ракетка для большого тенниса Triumph Pro STС Б/У",
     price: "2 200 ₽",
@@ -41,7 +40,14 @@ const AddCard = () => {
 
             <h3>{item.price}</h3>
 
+            {user ? (
+            <>
+              <Button margin={'0 10px 10px 0'}>Редактировать</Button>
+              <Button>Снять с публикации</Button>
+            </>
+          ) : (
             <ButtonWithPhone phoneNumber={item.phone}></ButtonWithPhone>
+          )}
 
             <S.Seller>
               <S.SellerImg />

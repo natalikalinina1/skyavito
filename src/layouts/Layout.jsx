@@ -1,38 +1,40 @@
 import { Link, Outlet } from "react-router-dom";
-import * as S  from "./layout.styled";
-import ButtonHeader from '../components/Buttons/ButtonHeader'
+import * as S from "./layout.styled";
+import ButtonHeader from "../components/Buttons/ButtonHeader";
 import Search from "../components/Search/Search";
+import { useState } from "react";
+import Modal from "../components/Modals/Modal/Modal";
+import Login from "../components/Modals/AuthForm/Login";
+import SignUp from "../components/Modals/AuthForm/SignUp";
 
 const Layout = () => {
-  const user = true
+  const [isOpen, setIsOpen] = useState(false)
+  const user = false
+  const isRegister = true;
   return (
     <div>
       <S.Header>
-      {user ? (
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          {isRegister ? <Login /> : <SignUp />}
+        </Modal>
+        {user ? (
           <S.Nav>
-            <Link to="place-add">
-            <ButtonHeader margin={'0 10px'}>
-                Разместить объявление
-              </ButtonHeader>
-            </Link>
+            <ButtonHeader margin={"0 10px"}>Разместить объявление</ButtonHeader>
+
             <Link to="profile">
-              <ButtonHeader>
-                Личный кабинет
-              </ButtonHeader>
+              <ButtonHeader>Личный кабинет</ButtonHeader>
             </Link>
           </S.Nav>
         ) : (
           <S.Nav>
-            <Link to="profile">
-              <ButtonHeader>
-                Вход в личный кабинет
-              </ButtonHeader>
-            </Link>
+            <ButtonHeader onClick={() => setIsOpen(true)}>
+              Вход в личный кабинет
+            </ButtonHeader>
           </S.Nav>
         )}
       </S.Header>
       <S.Main>
-      <Search/>
+        <Search />
         <Outlet />
       </S.Main>
     </div>
