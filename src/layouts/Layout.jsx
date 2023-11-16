@@ -6,10 +6,12 @@ import { useState } from "react";
 import Modal from "../components/Modals/Modal/Modal";
 import Login from "../components/Modals/AuthForm/Login";
 import SignUp from "../components/Modals/AuthForm/SignUp";
+import AddModal from '../components/Modals/AddUpdateModal/AddModal';
 
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const user = false
+  const [isNewAddOpen, setIsNewAddOpen] = useState(false)
+  const user = true
   const isRegister = true;
   return (
     <div>
@@ -17,9 +19,16 @@ const Layout = () => {
         <Modal open={isOpen} onClose={() => setIsOpen(false)}>
           {isRegister ? <Login /> : <SignUp />}
         </Modal>
+        <Modal open={isNewAddOpen} onClose={() => setIsNewAddOpen(false)}>
+          <AddModal/>
+        </Modal>
         {user ? (
           <S.Nav>
-            <ButtonHeader margin={"0 10px"}>Разместить объявление</ButtonHeader>
+            <ButtonHeader  margin={'0 10px'}
+              onClick={() => setIsNewAddOpen(true)}
+            >
+              Разместить объявление
+              </ButtonHeader>
 
             <Link to="profile">
               <ButtonHeader>Личный кабинет</ButtonHeader>

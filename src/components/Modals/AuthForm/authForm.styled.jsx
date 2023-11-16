@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const Form = styled.form`
-  background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 12px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -25,7 +25,7 @@ export const SellerImage = styled.div`
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  background: lightgrey;
+  background: ${({ theme }) => theme.colors.imgBackGround};
 `
 
 export const SellerDetails = styled.div`
