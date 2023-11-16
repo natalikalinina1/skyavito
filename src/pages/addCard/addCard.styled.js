@@ -29,7 +29,7 @@ export const AddImages = styled.div`
 export const MainImg = styled.div`
   width: 100%;
   height: 480px;
-  background: lightgrey;
+  background:${({ theme }) => theme.colors.imgBackGround};
   cursor: pointer;
 `
 
@@ -62,6 +62,7 @@ export const AddItemInfo = styled.div`
     font-size: 16px;
     line-height: 130%;
     color: ${({ theme }) => theme.colors.primaryBlue};
+    cursor: pointer;
   }
 `
 
@@ -93,7 +94,7 @@ export const SellerImg = styled.div`
   height: 40px;
   border-radius: 50%;
 
-  background: lightgrey;
+  background: ${({ theme }) => theme.colors.imgBackGround};
 `
 
 export const AddDescription = styled.div`

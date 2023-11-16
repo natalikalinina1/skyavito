@@ -1,10 +1,9 @@
-import * as S from './addCard.styled'; 
-
-
-
+import * as S from "./addCard.styled";
+import Button from "../../components/Buttons/Button";
 import ButtonWithPhone from "../../components/Buttons/ButtonWithPhone";
 
 const AddCard = () => {
+  const user = false;
   const item = {
     name: "Ракетка для большого тенниса Triumph Pro STС Б/У",
     price: "2 200 ₽",
@@ -16,42 +15,47 @@ const AddCard = () => {
     sellerName: "Кирилл",
     sellerOnSiteSince: "Продает товары с августа 2021",
   };
- 
+
   return (
     <>
       <S.AddCardDetails>
-        
-          <S.AddImages>
-            <S.MainImg></S.MainImg>
-            <div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </S.AddImages>
-          <S.AddDetails>
-            <h1>{item.name}</h1>
-            <S.AddItemInfo>
-              <S.Text>Сегодня в 10:45</S.Text>
-              <S.Text>Санкт-Петербург</S.Text>
-              <span>23 отзыва</span>
-            </S.AddItemInfo>
+        <S.AddImages>
+          <S.MainImg></S.MainImg>
+          <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </S.AddImages>
+        <S.AddDetails>
+          <h1>{item.name}</h1>
+          <S.AddItemInfo>
+            <S.Text>Сегодня в 10:45</S.Text>
+            <S.Text>Санкт-Петербург</S.Text>
+            <span>23 отзыва</span>
+          </S.AddItemInfo>
 
-            <h3>{item.price}</h3>
+          <h3>{item.price}</h3>
 
+          {user ? (
+            <>
+              <Button margin={"0 10px 10px 0"}>Редактировать</Button>
+              <Button>Снять с публикации</Button>
+            </>
+          ) : (
             <ButtonWithPhone phoneNumber={item.phone}></ButtonWithPhone>
+          )}
 
-            <S.Seller>
-              <S.SellerImg />
-              <div>
-                <S.SellerLink to={"/seller"}>{item.sellerName}</S.SellerLink>
-                <S.Text>{item.sellerOnSiteSince}</S.Text>
-              </div>
-            </S.Seller>
-          </S.AddDetails>
-      
+          <S.Seller>
+            <S.SellerImg />
+            <div>
+              <S.SellerLink to={"/seller"}>{item.sellerName}</S.SellerLink>
+              <S.Text>{item.sellerOnSiteSince}</S.Text>
+            </div>
+          </S.Seller>
+        </S.AddDetails>
       </S.AddCardDetails>
 
       <S.AddDescription>

@@ -16,5 +16,5 @@ export const Nav = styled.nav`
 
 export const Main = styled.main`
   max-width: 1220px;
-  margin: 0 auto;
+  margin: 0 139px;
 `;

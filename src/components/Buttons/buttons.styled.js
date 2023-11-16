@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   padding: 13px 37px;
   margin: ${({ margin }) => margin};
   box-sizing: border-box;
-
+  width: ${({ width }) => width};
   color: ${({ theme }) => theme.colors.white};
 
   &:hover {
@@ -34,5 +34,15 @@ export const StyledButtonWithPhone = styled(StyledButton)`
     color: ${({ theme }) => theme.colors.white};
     max-width: 241px;
     margin: 0 0 4px 0;
+  }
+`
+export const ButtonSignUp = styled(StyledButton)`
+  color: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.colors.white};
+  border: ${({ theme }) => `1px solid ${theme.colors.lightSilver}`};
+  width: 278px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.lightSilver};
+    color: ${({ theme }) => theme.colors.white};
   }
 `
