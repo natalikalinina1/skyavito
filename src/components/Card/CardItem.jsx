@@ -1,19 +1,21 @@
 import * as S from "./card.styled";
+import { BASE_URL } from '../../features/api/apiSlice'
+import createdOn from './utils'
 
-const CardItem = ({ id }) => {
-  const item = {
-    name: "Ракетка для большого тенниса Triumph Pro ST...",
-    price: "2 200 ₽",
-    city: "Санкт Петербург",
-    timeStamp: "Сегодня в 10:45",
-  };
+const CardItem = ({ id, name, price, city, time, images }) => {
+  const imgUrl = `${BASE_URL}${images[0]?.url}`
   return (
     <S.Card to={`/add/${id}`}>
-      <S.Image></S.Image>
-      <S.CardName title={item.name}>{item.name}</S.CardName>
-      <S.CardPrice>{item.price}</S.CardPrice>
-      <S.CardPlace>{item.city}</S.CardPlace>
-      <S.CardPlace>{item.timeStamp}</S.CardPlace>
+      <S.Image>
+        <img
+          src={imgUrl.slice(-3) === 'png' ? imgUrl : '/img/no_picture.png'}
+          alt={name}
+        />
+      </S.Image>
+      <S.CardName title={name}>{name}</S.CardName>
+      <S.CardPrice>{`${price} ₽`}</S.CardPrice>
+      <S.CardPlace>{city}</S.CardPlace>
+      <S.CardPlace>{createdOn(time)}</S.CardPlace>
     </S.Card>
   );
 };

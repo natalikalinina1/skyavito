@@ -26,17 +26,22 @@ export const Card = styled(Link)`
 export const Image = styled.div`
   height: 270px;
   width: 270px;
+  object-fit: cover;
   background-color: lightgrey;
   margin: 0 0 20px 0;
   border-radius: 5px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `
 
 export const CardName = styled.p`
   font-size: 22px;
   line-height: 120%;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.primaryBlue};
   margin: 0 0 10px 0;
-  height: 52px;
   overflow: hidden;
   text-overflow: ellipsis;
 `
