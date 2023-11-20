@@ -1,23 +1,63 @@
 import * as S from "./addCard.styled";
 import Button from "../../components/Buttons/Button";
 import ButtonWithPhone from "../../components/Buttons/ButtonWithPhone";
+import Modal from "../../components/Modals/Modal/Modal";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Reviews from "../../components/Modals/RreviewModal/Review";
+import UpdateModal from "../../components/Modals/AddUpdateModal/UpdateModal";
+import { BASE_URL } from "../../features/api/apiSlice";
+import { useGetReviewByIdQuery } from "../../features/reviews/reviewApiSlice";
+import { getCurrentReview } from "../../features/reviews/reviewSlice";
+import { getReviewsLength } from "./utils";
 
 const AddCard = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const add = useSelector((state) => state.card?.currentAdd);
+  const currentReviews = useSelector((state) => state.reviews?.currentReview);
+
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [isEditAddOpen, setIsEditAddOpen] = useState(false);
+
   const user = false;
-  const item = {
-    name: "Ракетка для большого тенниса Triumph Pro STС Б/У",
-    price: "2 200 ₽",
-    city: "Санкт Петербург",
-    timeStamp: "Сегодня в 10:45",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    phone: "89600125523",
-    sellerName: "Кирилл",
-    sellerOnSiteSince: "Продает товары с августа 2021",
-  };
+
+  const {
+    data: reviews,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+  } = useGetReviewByIdQuery(id);
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(getCurrentReview(reviews));
+    }
+  }, [dispatch, isSuccess, reviews]);
+
+  let reviewsContent;
+
+  if (isLoading) {
+    reviewsContent = <p>Loading</p>;
+  } else if (isSuccess) {
+    reviewsContent = reviews;
+  } else if (isError) {
+    reviewsContent = <p>{error}</p>;
+  }
 
   return (
     <>
+      <Modal open={isReviewOpen} onClose={() => setIsReviewOpen(false)}>
+        <Reviews reviews={reviewsContent} />
+      </Modal>
+
+      <Modal open={isEditAddOpen} onClose={() => setIsEditAddOpen(false)}>
+        <UpdateModal />
+      </Modal>
+
       <S.AddCardDetails>
         <S.AddImages>
           <S.MainImg></S.MainImg>
@@ -30,29 +70,41 @@ const AddCard = () => {
           </div>
         </S.AddImages>
         <S.AddDetails>
-          <h1>{item.name}</h1>
+          <h1>{add?.title}</h1>
           <S.AddItemInfo>
             <S.Text>Сегодня в 10:45</S.Text>
             <S.Text>Санкт-Петербург</S.Text>
-            <span>23 отзыва</span>
+            <span onClick={() => setIsReviewOpen(true)}>
+              {getReviewsLength(currentReviews?.length)}
+            </span>
           </S.AddItemInfo>
 
-          <h3>{item.price}</h3>
+          <h3>{`${add?.price} ₽`}</h3>
 
           {user ? (
             <>
-              <Button margin={"0 10px 10px 0"}>Редактировать</Button>
+              <Button
+                margin={"0 10px 10px 0"}
+                onClick={() => setIsEditAddOpen(true)}
+              >
+                Редактировать
+              </Button>
               <Button>Снять с публикации</Button>
             </>
           ) : (
-            <ButtonWithPhone phoneNumber={item.phone}></ButtonWithPhone>
+            <ButtonWithPhone phoneNumber={add?.user.phone}></ButtonWithPhone>
           )}
 
           <S.Seller>
-            <S.SellerImg />
+            <S.SellerImg
+              src={`${BASE_URL}${add?.user.avatar}`}
+              alt="seller avatar"
+            />
             <div>
-              <S.SellerLink to={"/seller"}>{item.sellerName}</S.SellerLink>
-              <S.Text>{item.sellerOnSiteSince}</S.Text>
+              <S.SellerLink to={`/seller/${add?.user.id}`}>
+                {add?.user.name}
+              </S.SellerLink>
+              <S.Text>{add?.created_on}</S.Text>
             </div>
           </S.Seller>
         </S.AddDetails>
@@ -60,7 +112,7 @@ const AddCard = () => {
 
       <S.AddDescription>
         <h2>Описание товара</h2>
-        <p>{item.description}</p>
+        <p>{add?.description}</p>
       </S.AddDescription>
     </>
   );

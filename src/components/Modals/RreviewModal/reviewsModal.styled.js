@@ -41,9 +41,15 @@ export const Title = styled.h1`
 
 export const ReviewContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content:  flex-start;
   gap: 12px;
-  margin: 30px auto;
+  margin-top: 30px;
+  width: 100%;
+  padding: 10px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.imgBackGround};
+    border-radius: 5px;
+  }
 
   p {
     font-weight: 600;
@@ -54,7 +60,7 @@ export const ReviewContainer = styled.div`
   }
 `
 
-export const Image = styled.div`
+export const Image = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;

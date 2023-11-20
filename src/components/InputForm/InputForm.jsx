@@ -8,6 +8,8 @@ const Input = ({
   value,
   width,
   placeholderColor,
+  onClick,
+  onChange,
 }) => {
   return (
     <S.StyledInput
@@ -18,6 +20,8 @@ const Input = ({
       value={value}
       width={width}
       placeholderColor={placeholderColor}
+      onClick={onChange}
+      onChange={onChange}
     />
   )
 }
