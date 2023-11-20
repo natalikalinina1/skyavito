@@ -6,39 +6,38 @@ import { BASE_URL } from "../../features/api/apiSlice";
 import { useParams } from "react-router-dom";
 
 const Seller = () => {
-  const users = useSelector((state) => state.card?.users);
-  const allCard = useSelector((state) => state.card?.allCard);
+  const users = useSelector((state) => state.card?.users)
+  const allCard = useSelector((state) => state.card?.Card)
 
-  const { id } = useParams();
+  const { id } = useParams()
 
-  const sellerInfo = users.filter((user) => id === user.id);
+  const seller = users.filter((user) => Number(user.id) === Number(id))
+  const sellerCard = allCard.filter((add) => Number(add.user_id) === Number(id))
 
-  console.log(users.map((user) => console.log(user.id)));
-  console.log(id);
-
-  const sellerCard = allCard.filter((add) => add.user.id === sellerInfo.id);
   return (
     <>
       <S.Title>Профиль продавца</S.Title>
       <S.SellerInfo>
         <S.SellerImage
           src={
-            sellerInfo.avatar
-              ? `${BASE_URL}${sellerInfo.avatar}`
-              : "/img/no_picture.png"
+            seller[0].avatar
+              ? `${BASE_URL}${seller[0].avatar}`
+              : '/img/no_picture.png'
           }
         />
         <S.SellerDetails>
-          <S.SellerName>{`${sellerInfo.name} ${sellerInfo.surname}`}</S.SellerName>
-          <S.SellerPlace>{sellerInfo.city}</S.SellerPlace>
-          <S.SellerPlace>{`Продает товары с ${sellerInfo.sells_from}`}</S.SellerPlace>
-          <ButtonWithPhone phoneNumber={sellerInfo.phone}></ButtonWithPhone>
+          <S.SellerName>{`${seller[0].name} ${seller[0].surname}`}</S.SellerName>
+          <S.SellerPlace>{seller[0].city}</S.SellerPlace>
+          <S.SellerPlace>{`Продает товары с ${seller[0].sells_from}`}</S.SellerPlace>
+
+          <ButtonWithPhone  phoneNumber={seller[0].phone}></ButtonWithPhone >
         </S.SellerDetails>
       </S.SellerInfo>
+
       <S.Heading>Товары продавца</S.Heading>
       <Card card={sellerCard} />
     </>
-  );
-};
+  )
+}
 
-export default Seller;
+export default Seller

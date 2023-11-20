@@ -11,8 +11,11 @@ export const Form = styled.form`
   input {
     margin: 30px 0 0 0;
   }
-`
+  p {
+    color: salmon;
+  }
 
+`
 export const LogoContainer = styled.div``
 
 export const Logo = styled.img`

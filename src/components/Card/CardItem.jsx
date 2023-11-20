@@ -4,7 +4,7 @@ import createdOn from './utils'
 import { useDispatch } from 'react-redux'
 import { getCurrentAdd } from '../../features/card/cardSlice'
 
-const CardItem = (add) => {
+const CardItem = ({ add }) => {
   const dispatch = useDispatch()
 
   const imgUrl = `${BASE_URL}${add.images[0]?.url}`
@@ -16,10 +16,10 @@ const CardItem = (add) => {
            alt={add.name}
         />
       </S.Image>
-      <S.CardName title={add.name}>{add.name}</S.CardName>
+      <S.CardName>{add.name}</S.CardName>
       <S.CardPrice>{`${add.price} ₽`}</S.CardPrice>
-      <S.CardPlace>{add.city}</S.CardPlace>
-      <S.CardPlace>{createdOn(add.time)}</S.CardPlace>
+      <S.CardPlace>{add.user.city}</S.CardPlace>
+      <S.CardPlace>{createdOn(add.created_on)}</S.CardPlace>
     </S.Card>
   );
 };

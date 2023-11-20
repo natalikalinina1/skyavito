@@ -1,26 +1,38 @@
 import ProfileForm from "../../components/ProfilForm/ProfileForm";
 import Card from "../../components/Card/Card";
 import * as S from "./profile.styled";
+import { useGetCurrentUserQuery } from "../../features/users/usersApi";
+import { setCurrentUser } from "../../features/users/usersSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const person = {
-  name: "Антон",
-  surname: "Городецкий",
-  city: "Санкт-Петербург",
-  phone: 89161234567,
-};
-const userCards = true
+const userCard = false;
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users?.currentUser);
+
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetCurrentUserQuery();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setCurrentUser(data));
+    }
+  }, [isSuccess, dispatch, data]);
+
+  if (isError) {
+  }
   return (
     <>
-      <S.Title>Здравствуйте, {person.name}!</S.Title>
+      <S.Title>Здравствуйте, {data?.name}</S.Title>
       <S.Heading>Настройки профиля</S.Heading>
-      <ProfileForm person={person} />
+      {user && <ProfileForm person={user} />}
       <S.Heading>Мои товары</S.Heading>
-      {userCards ? (
+      {userCard ? (
         <Card count="4" />
       ) : (
-        <S.Heading>Пока ваших объявлений нет</S.Heading>
+        <S.Heading>Пока у вас нет обьявлений</S.Heading>
       )}
     </>
   );
