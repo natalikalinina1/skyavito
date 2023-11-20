@@ -1,29 +1,20 @@
 import * as S from  './inputForm.styled'
+import React from 'react'
 
-const Input = ({
-  placeholder,
-  type,
-  name,
-  id,
-  value,
-  width,
-  placeholderColor,
-  onClick,
-  onChange,
-}) => {
+const Input = React.forwardRef((props, ref) => {
   return (
     <S.StyledInput
-      placeholder={placeholder}
-      type={type}
-      name={name}
-      id={id}
-      value={value}
-      width={width}
-      placeholderColor={placeholderColor}
-      onClick={onChange}
-      onChange={onChange}
+      placeholder={props.placeholder}
+      type={props.type}
+      name={props.name}
+      id={props.id}
+      value={props.value}
+      width={props.width}
+      placeholderColor={props.placeholderColor}
+      onClick={props.onClick}
+      onChange={props.onChange}
     />
   )
-}
+})
 
 export default Input

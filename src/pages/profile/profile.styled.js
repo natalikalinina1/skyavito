@@ -21,23 +21,7 @@ export const AccountForm = styled.form`
   margin-bottom: 70px;
 `
 
-export const Image = styled.div`
-  text-align: center;
-  max-width: 170px;
-  div {
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    background: ${({ theme }) => theme.colors.imgBackGround};
-  }
-  p {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    color: ${({ theme }) => theme.colors.primaryBlue};
-    cursor: pointer;
-  }
-`
+
 
 export const Data = styled.div``
 

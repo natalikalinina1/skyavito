@@ -7,13 +7,7 @@ const Card = ({ card }) => {
     return (
       <CardItem
         key={add.id}
-        id={add.id}
-        name={add.title}
-        price={add.price}
-        city={add.user.city}
-        time={add?.created_on}
-        images={add.images}
-        user={add.user}
+        add={add}
       />
     )
   })

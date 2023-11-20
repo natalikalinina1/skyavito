@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   column-gap: 26px;
   row-gap: 40px;
@@ -29,10 +29,11 @@ export const Image = styled.div`
   object-fit: cover;
   background-color: lightgrey;
   margin: 0 0 20px 0;
-  border-radius: 5px;
+
   img {
     width: 100%;
     height: 100%;
+    border-radius: 5px;
   }
 `
 

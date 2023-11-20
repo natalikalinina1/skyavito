@@ -2,30 +2,30 @@ import { Link, Outlet } from "react-router-dom";
 import * as S from "./layout.styled";
 import ButtonHeader from "../components/Buttons/ButtonHeader";
 import Search from "../components/Search/Search";
-import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { getModal, isModalOpen } from '../features/modal/modalSlice'
 import Modal from "../components/Modals/Modal/Modal";
-import Login from "../components/Modals/AuthForm/Login";
-import SignUp from "../components/Modals/AuthForm/SignUp";
-import AddModal from '../components/Modals/AddUpdateModal/AddModal';
+
 
 const Layout = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isNewAddOpen, setIsNewAddOpen] = useState(false)
-  const user = false;
-  const isRegister = true;
+ 
+  const dispatch = useDispatch()
+
+  const user = useSelector((state) => state.auth?.user)
+  const isLoginOpen = useSelector((state) => state.modal.isOpen)
+  const modalName = useSelector((state) => state.modal.modal)
   return (
     <div>
       <S.Header>
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-          {isRegister ? <Login /> : <SignUp />}
-        </Modal>
-        <Modal open={isNewAddOpen} onClose={() => setIsNewAddOpen(false)}>
-          <AddModal/>
-        </Modal>
+      {isLoginOpen && <Modal modal={modalName}></Modal>}
+      
         {user ? (
           <S.Nav>
             <ButtonHeader  margin={'0 10px'}
-              onClick={() => setIsNewAddOpen(true)}
+              onClick={() => {
+                dispatch(isModalOpen(true))
+                dispatch(getModal('add-modal'))
+              }}
             >
               Разместить объявление
               </ButtonHeader>
@@ -36,7 +36,10 @@ const Layout = () => {
           </S.Nav>
         ) : (
           <S.Nav>
-            <ButtonHeader onClick={() => setIsOpen(true)}>
+            <ButtonHeader onClick={() => {
+                dispatch(isModalOpen(true))
+                dispatch(getModal('login'))
+              }}>
               Вход в личный кабинет
             </ButtonHeader>
           </S.Nav>

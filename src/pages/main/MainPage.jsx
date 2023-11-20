@@ -1,17 +1,15 @@
-import Card from '../../components/Card/Card'
-import * as S from './mainPage.styled'
-import {
-  useGetAllCardQuery,
-  useGetUsersQuery,
-} from '../../features/card/cardApi'
-import { getAllCard, getUsers } from '../../features/card/cardSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import Card from "../../components/Card/Card";
+import * as S from "./mainPage.styled";
+import { useGetAllCardQuery } from "../../features/card/cardApi";
+import { getAllCard, getUsers } from "../../features/card/cardSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useGetUsersQuery } from "../../features/users/usersApi";
 
 const MainPage = () => {
-  const dispatch = useDispatch()
-  const allCard = useSelector((state) => state.card?.allCard)
-  const searchValue = useSelector((state) => state.card?.search)
+  const dispatch = useDispatch();
+  const allCard = useSelector((state) => state.card?.allCard);
+  const searchValue = useSelector((state) => state.card?.search);
 
   const {
     data: card,
@@ -19,44 +17,44 @@ const MainPage = () => {
     isSuccess,
     isError,
     error,
-  } = useGetAllCardQuery()
+  } = useGetAllCardQuery();
 
-  const { data: users } = useGetUsersQuery()
+  const { data: users } = useGetUsersQuery();
 
   useEffect(() => {
-    dispatch(getUsers(users))
-  }, [users, dispatch])
+    dispatch(getUsers(users));
+  }, [users, dispatch]);
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(getAllCard(card))
+      dispatch(getAllCard(card));
     }
-  }, [dispatch, isSuccess, card])
+  }, [dispatch, isSuccess, card]);
 
-  let content
+  let content;
 
   if (isLoading) {
-    content = <p>Loading...</p>
+    content = <p>Loading...</p>;
   } else if (isSuccess) {
     content = (
       <Card
         card={allCard?.filter((add) =>
-          searchValue.toLowerCase() === ''
+          searchValue.toLowerCase() === ""
             ? add
             : add.title.toLowerCase().includes(searchValue)
         )}
       />
-    )
+    );
   } else if (isError) {
-    content = { error }
+    content = { error };
   }
 
   return (
-    <div >
+    <div>
       <S.Title>Объявления</S.Title>
- {content}
+      {content}
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;

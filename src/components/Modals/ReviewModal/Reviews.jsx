@@ -1,15 +1,17 @@
 import Review from "./Review";
 import AddReview from "./AddReview";
 import * as S from "./reviewsModal.styled";
+import { useSelector } from 'react-redux'
 
-const Reviews = ({ reviews }) => {
+const Reviews = () => {
+  const reviews = useSelector((state) => state.reviews?.reviews)
   const content = reviews.map((review) => {
     return <Review key={review.id} id={review.id} review={review} />
   })
 
   
 
-  const user = false
+  const user = useSelector((state) => state.auth?.user)
   return (
     <S.StyledReview>
       <S.Title>Отзывы о товаре</S.Title>

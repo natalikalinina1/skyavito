@@ -8,11 +8,12 @@ export const cardApi = apiSlice.injectEndpoints({
     getAddById: builder.query({
       query: (id) => `ads/${id}`,
     }),
-    getUsers: builder.query({
-      query: () => 'user/all',
+    getCurrentUserAdds: builder.query({
+      query: () => 'card/me',
     }),
+   
   }),
 })
 
-export const { useGetAllCardQuery , useGetAddByIdQuery, useGetUsersQuery } =
+export const { useGetAllCardQuery,useGetAddByIdQuery} =
 cardApi
