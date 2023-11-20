@@ -5,10 +5,14 @@ export const cardApi = apiSlice.injectEndpoints({
     getAllCard: builder.query({
       query: () => '/ads',
     }),
-    getMainImg: builder.query({
-      query: (id) => `images/${id}`,
+    getAddById: builder.query({
+      query: (id) => `ads/${id}`,
+    }),
+    getUsers: builder.query({
+      query: () => 'user/all',
     }),
   }),
 })
 
-export const { useGetAllCardQuery , useGetMainImgQuery } = cardApi
+export const { useGetAllCardQuery , useGetAddByIdQuery, useGetUsersQuery } =
+cardApi

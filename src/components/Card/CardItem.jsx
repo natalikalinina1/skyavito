@@ -1,21 +1,25 @@
 import * as S from "./card.styled";
 import { BASE_URL } from '../../features/api/apiSlice'
 import createdOn from './utils'
+import { useDispatch } from 'react-redux'
+import { getCurrentAdd } from '../../features/card/cardSlice'
 
-const CardItem = ({ id, name, price, city, time, images }) => {
-  const imgUrl = `${BASE_URL}${images[0]?.url}`
+const CardItem = (add) => {
+  const dispatch = useDispatch()
+
+  const imgUrl = `${BASE_URL}${add.images[0]?.url}`
   return (
-    <S.Card to={`/add/${id}`}>
+    <S.Card to={`/add/${add.id}`} onClick={() => dispatch(getCurrentAdd(add))}>
       <S.Image>
         <img
-          src={imgUrl.slice(-3) === 'png' ? imgUrl : '/img/no_picture.png'}
-          alt={name}
+           src={add.images?.length !== 0 ? imgUrl : '/img/no_picture.png'}
+           alt={add.name}
         />
       </S.Image>
-      <S.CardName title={name}>{name}</S.CardName>
-      <S.CardPrice>{`${price} ₽`}</S.CardPrice>
-      <S.CardPlace>{city}</S.CardPlace>
-      <S.CardPlace>{createdOn(time)}</S.CardPlace>
+      <S.CardName title={add.name}>{add.name}</S.CardName>
+      <S.CardPrice>{`${add.price} ₽`}</S.CardPrice>
+      <S.CardPlace>{add.city}</S.CardPlace>
+      <S.CardPlace>{createdOn(add.time)}</S.CardPlace>
     </S.Card>
   );
 };

@@ -1,21 +1,19 @@
 import * as S from "./reviewsModal.styled";
+import { useSelector } from 'react-redux'
+import { BASE_URL } from '../../../features/api/apiSlice'
 
-const review = {
-  name: "Олег",
-  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  date: "14 августа",
-};
-
-const Review = () => {
+const Review = ({ review }) => {
+  const users = useSelector((state) => state.adds?.users)
+  const user = users.filter((user) => user.id === review.author_id)
   return (
     <S.ReviewContainer>
       <div>
-        <S.Image />
+        <S.Image src={`${BASE_URL}${user[0].avatar}`}  />
       </div>
       <S.ReviewDetails>
         <S.NameDate>
-          <p>{review.name}</p>
-          <span>{review.date}</span>
+          <p>{user[0].name}</p>
+          <span>{review.created_on}</span>
         </S.NameDate>
 
         <S.ReviewContent>

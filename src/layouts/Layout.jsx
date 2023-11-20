@@ -11,7 +11,7 @@ import AddModal from '../components/Modals/AddUpdateModal/AddModal';
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isNewAddOpen, setIsNewAddOpen] = useState(false)
-  const user = true
+  const user = false;
   const isRegister = true;
   return (
     <div>

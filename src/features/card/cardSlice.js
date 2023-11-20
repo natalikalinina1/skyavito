@@ -1,19 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  card: null,
+  allCard: null,
+  currentAdd: null,
+  search: null,
+  users: null,
 }
 
 const cardSlice = createSlice({
   name: 'card',
   initialState: initialState,
   reducers: {
-    getCard: (state, action) => {
-      state.card = action.payload
+    getAllCard: (state, action) => {
+      state.allCard = action.payload
+    },
+    getCurrentAdd: (state, action) => {
+      state.currentAdd = action.payload
+    },
+    getSearchValue: (state, action) => {
+      state.search = action.payload
+    },
+    getUsers: (state, action) => {
+      state.users = action.payload
     },
   },
 })
 
-export const { getCard } = cardSlice.actions
+export const { getAllCard, getCurrentAdd, getSearchValue, getUsers } =
+cardSlice.actions
 
 export default cardSlice.reducer

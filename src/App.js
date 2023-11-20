@@ -18,7 +18,7 @@ const router = createBrowserRouter(
       <Route index element={<MainPage />} />
       <Route path="profile" element={<Profile />} />
       <Route path="add/:id" element={<AddCard />} />
-      <Route path="seller" element={<Seller />} />
+      <Route path="seller/:id" element={<Seller />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
