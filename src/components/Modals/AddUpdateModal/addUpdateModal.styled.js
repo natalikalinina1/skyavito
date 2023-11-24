@@ -33,6 +33,7 @@ export const Heading = styled.p`
 
 export const Images = styled.div`
   margin-bottom: 30px;
+  position: relative;
 
   div {
     display: flex;
@@ -45,9 +46,13 @@ export const Images = styled.div`
     line-height: 150%;
     color: rgba(0, 0, 0, 0.3);
   }
+  input {
+    position: absolute;
+    transform: translate(-10000px);
+  }
 `
 
-export const Image = styled.div`
+export const UploadImageDiv= styled.div`
   width: 90px;
   height: 90px;
 
@@ -60,6 +65,15 @@ export const Image = styled.div`
 
   &::after {
     content: url('/img/plus.png');
+  }
+`
+export const UploadedImage = styled.img`
+  width: 90px;
+  height: 90px;
+  &:hover {
+    opacity: 0.5;
+    content: url('/img/cross.png');
+    cursor: pointer;
   }
 `
 

@@ -17,6 +17,14 @@ export const StyledInput = styled.input`
     color: ${({ placeholderColor }) =>
       placeholderColor ? placeholderColor : 'rgba(0, 0, 0, 0.3)'};
   }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 `
 
 export const StyledTextArea = styled.textarea`

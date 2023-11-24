@@ -5,6 +5,8 @@ import { getAllCard, getUsers } from "../../features/card/cardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useGetUsersQuery } from "../../features/users/usersApi";
+import { Preloader } from "../../styles/preloader.styles";
+
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const MainPage = () => {
   let content;
 
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = <Preloader/>
   } else if (isSuccess) {
     content = (
       <Card

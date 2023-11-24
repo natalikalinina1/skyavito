@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const AddCardDetails = styled.div`
   margin-bottom: 60px;
+  margin-top: 35px;
   display: flex;
   gap: 60px;
 `
@@ -10,27 +11,22 @@ export const AddCardDetails = styled.div`
 export const AddImages = styled.div`
   width: 480px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
 
-  div {
-    display: flex;
-    gap: 10px;
-
-    div {
-      background: lightgrey;
-      width: 88px;
-      height: 88px;
-      cursor: pointer;
-    }
+  img {
+    background: ${({ theme }) => theme.colors.imgBackGround};
+    width: 88px;
+    height: 88px;
+    cursor: pointer;
+    border-radius: 5px;
   }
-`
-
-export const MainImg = styled.div`
-  width: 100%;
-  height: 480px;
-  background:${({ theme }) => theme.colors.imgBackGround};
-  cursor: pointer;
+  img:first-child {
+    width: 100%;
+    height: 480px;
+    background: ${({ theme }) => theme.colors.imgBackGround};
+    cursor: unset;
+  }
 `
 
 export const AddDetails = styled.div`

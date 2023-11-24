@@ -34,4 +34,6 @@ export const theme = {
   },
 }
 
+
+
 export default GlobalStyle

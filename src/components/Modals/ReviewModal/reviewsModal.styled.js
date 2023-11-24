@@ -10,7 +10,7 @@ export const StyledReview = styled.div`
   padding-right: 80px;
 
   width: 652px;
-  height: 900px;
+  max-height: 900px;
   overflow: hidden;
   overflow-y: auto;
 
