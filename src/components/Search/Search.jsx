@@ -1,19 +1,21 @@
 import * as S from "./search.styled";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate  } from "react-router-dom";
 import Button from "../Buttons/Button";
 import Logo from "../Logo/Logo";
 import Input from "../InputForm/InputForm";
-import { useState, useEffect } from 'react'
+import { useState, useEffect} from 'react'
 import { getSearchValue } from '../../features/card/cardSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
+import { logUserOut } from '../../features/auth/authSlice'
 
 const Search = () => {
   const location = useLocation();
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.auth?.user)
   const [search, setSearch] = useState('')
 
-  useEffect(() => {
+  useEffect(() => { //отправка значения поиска в хранилище Redux при изменении этого значения.
     dispatch(getSearchValue(search))
   }, [search, dispatch])
   return (
@@ -36,9 +38,23 @@ const Search = () => {
            <Button margin={'0 0  0 10px'}>Найти</Button>
         </>
       ) : (
+        <>
         <Link to="/">
-           <Button margin={'0 0  0 10px'}>Вернуться на главную</Button>
+          <Button margin={'0 0  0 10px'}>Вернуться на главную</Button>
         </Link>
+
+        {user && (
+          <Button
+            margin={'0 0  0 10px'}
+            onClick={() => {
+              dispatch(logUserOut())
+              navigate('/')
+            }}
+          >
+            Выйти
+          </Button>
+        )}
+      </>
       )}
     </S.SearchContainer>
   );

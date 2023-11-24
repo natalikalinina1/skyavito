@@ -1,6 +1,6 @@
 import * as S from'./inputForm.styled'
 
-const TextArea = ({ placeholder, name, id, width, height }) => {
+const TextArea = ({ placeholder, name, id, width, height, onChange  }) => {
   return (
     <S.StyledTextArea
       placeholder={placeholder}
@@ -8,6 +8,7 @@ const TextArea = ({ placeholder, name, id, width, height }) => {
       id={id}
       width={width}
       height={height}
+      onChange={onChange}
     />
   )
 }

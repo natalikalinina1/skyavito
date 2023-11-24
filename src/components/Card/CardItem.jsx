@@ -13,10 +13,10 @@ const CardItem = ({ add }) => {
       <S.Image>
         <img
            src={add.images?.length !== 0 ? imgUrl : '/img/no_picture.png'}
-           alt={add.name}
+           alt={add.title}
         />
       </S.Image>
-      <S.CardName>{add.name}</S.CardName>
+      <S.CardName>{add.title}</S.CardName>
       <S.CardPrice>{`${add.price} ₽`}</S.CardPrice>
       <S.CardPlace>{add.user.city}</S.CardPlace>
       <S.CardPlace>{createdOn(add.created_on)}</S.CardPlace>

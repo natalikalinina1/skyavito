@@ -1,23 +1,24 @@
-import Input from "../../InputForm/InputForm";
+import Input from "../../InputForm/InputForm.jsx";
 import Button from "../../Buttons/Button";
 import ButtonSignUp from "../../Buttons/ButtonSignUp.jsx";
 import * as S from "./authForm.styled";
-import { getModal } from '../../../features/modal/modalSlice';
-import { useDispatch } from 'react-redux';
-import {useEffect,useState } from 'react';
-import { useLoginUserMutation } from '../../../features/auth/authApi.js';
-import { isModalOpen } from '../../../features/modal/modalSlice';
-import { useNavigate } from 'react-router-dom';
+import { getModal } from "../../../features/modal/modalSlice.js";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useLoginUserMutation } from "../../../features/auth/authApi.js";
+import { isModalOpen } from "../../../features/modal/modalSlice.js";
+import { useNavigate } from "react-router-dom";
 import {
   setUser,
   setAccessToken,
   setRefreshToken,
-} from '../../../features/auth/authSlice';
+} from "../../../features/auth/authSlice.js";
+import { Preloader } from "../../../styles/preloader.styles.js";
 
 const Login = () => {
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -27,8 +28,14 @@ const Login = () => {
   useEffect(() => {
     if (isError) {
       setErrorMessage('Неверный логин или пароль')
+    } else if (email === '' && password === '') {
+      setErrorMessage('Введите email и пароль')
+    } else if (email === '') {
+      setErrorMessage('Введите email')
+    } else if (password === '') {
+      setErrorMessage('Введите пароль')
     }
-  }, [error, isError])
+  }, [error, isError, email, password])
 
   const handleEmail = (event) => {
     setEmail(event.target.value)
@@ -41,29 +48,34 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    try {
-      const tokens = await login({
-        email,
-        password,
-      }).unwrap()
+    if (email && password) {
+      try {
+        const tokens = await login({
+          email,
+          password,
+        }).unwrap()
 
-      dispatch(setAccessToken(tokens.access_token))
-      dispatch(setRefreshToken(tokens.refresh_token))
-      dispatch(setUser(true))
-      setErrorMessage(null)
-      dispatch(isModalOpen(false))
+        dispatch(setAccessToken(tokens.access_token))
+        dispatch(setRefreshToken(tokens.refresh_token))
 
-      dispatch(setAccessToken(tokens.access_token))
-      dispatch(setRefreshToken(tokens.refresh_token))
+        dispatch(setUser(true))
+        setErrorMessage(null)
+        dispatch(isModalOpen(false))
 
-      dispatch(setUser(true))
-      setErrorMessage(null)
-      dispatch(isModalOpen(false))
-      navigate('/profile')
-    } catch (err) {
-      //setErrorMessage(err)
+        dispatch(setAccessToken(tokens.access_token))
+        dispatch(setRefreshToken(tokens.refresh_token))
+
+        dispatch(setUser(true))
+        setErrorMessage(null)
+        dispatch(isModalOpen(false))
+        navigate('/profile')
+      } catch (err) {
+        console.log(err)
+        setErrorMessage('Произошла ошибка')
+      }
     }
   }
+
   return (
     <>
       <S.Form onSubmit={(event) => handleSubmit(event)}>
@@ -73,24 +85,23 @@ const Login = () => {
 
         <Input
           onChange={(event) => handleEmail(event)}
-          placeholder={'Email'}
+          placeholder={"Email"}
           width="278px"
         />
 
         <Input
           type="password"
           onChange={(event) => handlePassword(event)}
-          placeholder={'Пароль'}
+          placeholder={"Пароль"}
           width="278px"
         />
-{errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
         <Button type="submit" margin="60px 0 20px 0" width="278px">
-  
-          {isLoading ? 'Loading' : ' Войти'}
+          {isLoading ? <Preloader /> : " Войти"}
         </Button>
         <ButtonSignUp
-        onClick={() => {
-            dispatch(getModal('sign-up'))
+          onClick={() => {
+            dispatch(getModal("sign-up"));
           }}
         >
           Зарегистрироваться

@@ -8,17 +8,17 @@ const Review = ({ review }) => {
   return (
     <S.ReviewContainer>
       <div>
-        <S.Image src={`${BASE_URL}${user[0].avatar}`}  />
+        <S.Image src={`${BASE_URL}${user[0]?.avatar}`} />
       </div>
       <S.ReviewDetails>
         <S.NameDate>
-          <p>{user[0].name}</p>
-          <span>{review.created_on}</span>
+        <p>{user[0]?.name}</p>
+          <span>{review?.created_on}</span>
         </S.NameDate>
 
         <S.ReviewContent>
           <p>Комментарий</p>
-          <span>{review.text}</span>
+          <span>{review?.text}</span>
         </S.ReviewContent>
       </S.ReviewDetails>
     </S.ReviewContainer>

@@ -1,18 +1,21 @@
 import Input from "../InputForm/InputForm";
 import Button from "../Buttons/Button";
 import * as S from "./profileForm.styled";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { changeUserInfo } from "../../features/users/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useChangeUserMutation,
   useUploadAvatarMutation,
 } from "../../features/users/usersApi";
+import { BASE_URL } from '../../features/api/apiSlice'
+import { Preloader } from "../../styles/preloader.styles";
 
-const ProfileForm = ({ person }) => {
+const ProfileForm = ({ isSuccess, avatarImg }) => {
   const dispatch = useDispatch();
   const inputRef = React.createRef();
-
+  const avatarImgSrc =
+  avatarImg !== null ? `${BASE_URL}${avatarImg}` : '/img/icon_01.png'
   const user = useSelector((state) => state.users?.currentUser);
 
   const [values, setValues] = useState({
@@ -25,8 +28,24 @@ const ProfileForm = ({ person }) => {
   const [isActive, setIsActive] = useState(true);
   const [avatar, setAvatar] = useState(null);
 
-  const [changeUser, { isLoading, isError, error }] = useChangeUserMutation();
-  const [changeAvatar] = useUploadAvatarMutation();
+  const [avatarPreview, setAvatarPreview] = useState(null)
+
+  const [
+    changeUser,
+    {
+      isLoading: isUserChangeLoading,
+      isError: isUserChangeError,
+      error: userChangeError,
+    },
+  ] = useChangeUserMutation()
+
+  const [changeAvatar] = useUploadAvatarMutation()
+
+  const handleAvatar = (event) => {
+    setAvatar(event.target.files[0])
+    setAvatarPreview(event.target.files[0])
+    setIsActive(false)
+  }
 
   const handleName = (event) => {
     setValues({ ...values, name: event.target.value });
@@ -56,25 +75,44 @@ const ProfileForm = ({ person }) => {
     try {
       await changeUser(values).unwrap();
       setIsActive(true);
+      if (avatar) {
+        const formData = new FormData()
+        formData.append('file', avatar)
+        changeAvatar(formData)
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    if (isError) {
-      console.log(error);
+     if (isUserChangeError) {
+      console.log(userChangeError)
     }
-  }, [isError, error]);
+  }, [isUserChangeError, userChangeError])
+
+  useEffect(() => {
+    if (isSuccess) {
+      setAvatarPreview(null)
+    }
+  }, [isSuccess])
+
 
   return (
     <S.AccountForm onSubmit={(event) => event.preventDefault()}>
       <S.Image>
         <img
-          src={user.avatar !== null ? user.avatar : "/img/no_picture.png"}
+         src={
+          avatarPreview ? URL.createObjectURL(avatarPreview) : avatarImgSrc
+        }
           alt="avatar"
         />
-        <p>Заменить</p>
+     <input
+          type="file"
+          id="avatar"
+          onChange={(event) => handleAvatar(event)}
+        />
+        <label htmlFor="avatar">Заменить</label>
       </S.Image>
       <S.Data>
         <S.Inputs>
@@ -125,7 +163,7 @@ const ProfileForm = ({ person }) => {
             <Input
               placeholder={user?.phone}
               name="phone"
-              type="text"
+              type="tel"
               id="phone"
               width="614px"
               placeholderColor="#000"
@@ -134,12 +172,8 @@ const ProfileForm = ({ person }) => {
             />
           </div>
         </S.Inputs>
-        <Button
-          disabled={isActive}
-          onClick={() => handleSubmit()}
-          margin="30px 0  0 0"
-        >
-          Сохранить
+        <Button>
+          {isUserChangeLoading ? <Preloader /> : 'Сохранить'}
         </Button>
       </S.Data>
     </S.AccountForm>

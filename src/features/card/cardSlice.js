@@ -5,6 +5,8 @@ const initialState = {
   currentAdd: null,
   search: null,
   users: null,
+  currentAddImages: null,
+  userCard: null,
 }
 
 const cardSlice = createSlice({
@@ -23,10 +25,16 @@ const cardSlice = createSlice({
     getUsers: (state, action) => {
       state.users = action.payload
     },
+    setCurrentAddImages: (state, action) => {
+      state.currentAddImages = action.payload
+    },
+    setUserCard: (state, action) => {
+      state.userCard = action.payload
+    },
   },
 })
 
-export const { getAllCard, getCurrentAdd, getSearchValue, getUsers } =
+export const { getAllCard, getCurrentAdd, getSearchValue, getUsers, setCurrentAddImages, setUserCard } =
 cardSlice.actions
 
 export default cardSlice.reducer
