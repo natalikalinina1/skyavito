@@ -11,11 +11,13 @@ import { isModalOpen } from '../../../features/modal/modalSlice'
 import { useDispatch } from 'react-redux'
 
 const AddModal = () => {
+  const imgLimit = 5
   const dispatch = useDispatch()
   const [createAdd] = useCreateAddMutation()
   const [createAddWithNoImages] = useCreateAddWithNoImagesMutation()
 
   const [isDisable, setIsDisable] = useState(true)
+  const [imgQuality, setImgQuality] = useState(0)
   const [preview, setPreview] = useState([])
   const [values, setValues] = useState({
     title: '',
@@ -23,6 +25,7 @@ const AddModal = () => {
     files: [],
     price: 0,
   })
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -58,7 +61,9 @@ const AddModal = () => {
   }
 
   const handlePictureChange = (event) => {
-    const newFiles = Object.values(event.target.files).map((file) => file)
+    const newFiles = Object.values(event.target.files)
+    .map((file) => file)
+    .slice(0, 5)
 
     if (newFiles) {
       const updatedList = [...values.files, ...newFiles]
@@ -81,20 +86,20 @@ const AddModal = () => {
     })
     setPreview(preview.slice(id, 1))
   }
-
   useEffect(() => {
     if (values.files.length === 0) {
       setPreview([])
+    } else if (values.files.length >= 5) {
+      setImgQuality(4)
     }
+
     const objectUrl = []
     values.files.forEach((image) => objectUrl.push(URL.createObjectURL(image)))
+
     setPreview(objectUrl)
+    setImgQuality(objectUrl.length)
   }, [values.files])
 
-  useEffect(() => {
-    console.log(values)
-  }, [values])
-  
   return (
     <S.StyledAddModal>
       <S.Title>Новое объявление</S.Title>
@@ -113,8 +118,8 @@ const AddModal = () => {
 
       <S.Heading>Описание</S.Heading>
       <TextArea
-        width={"100%"}
-        height={"200px"}
+        width={'100%'}
+        height={'200px'}
         placeholder="Введите описание"
         name={'description'}
         onChange={(event) => {
@@ -129,73 +134,35 @@ const AddModal = () => {
           <span>не более 5 фотографий</span>
         </div>
         <div>
-        <input
+          <input
             type="file"
             multiple
             id="images"
             onChange={(event) => handlePictureChange(event)}
           />
 
-          {preview && preview[0] ? (
+          {preview.map((preview, i) => (
             <S.UploadedImage
-              src={preview[0]}
-              onClick={() => handleDeletePreview(0)}
+              src={preview}
+              onClick={() => handleDeletePreview(i)}
             />
-          ) : (
-            <label htmlFor="images">
-              <S.UploadImageDiv />
-            </label>
-          )}
+          ))}
 
-          {preview && preview[1] ? (
-            <S.UploadedImage
-              src={preview[1]}
-              onClick={() => handleDeletePreview(1)}
-            />
-          ) : (
-            <label htmlFor="images">
-              <S.UploadImageDiv />
-            </label>
-          )}
-
-          {preview && preview[2] ? (
-            <S.UploadedImage
-              src={preview[2]}
-              onClick={() => handleDeletePreview(2)}
-            />
-          ) : (
-            <label htmlFor="images">
-              <S.UploadImageDiv />
-            </label>
-          )}
-
-          {preview && preview[3] ? (
-            <S.UploadedImage
-              src={preview[3]}
-              onClick={() => handleDeletePreview(3)}
-            />
-          ) : (
-            <label htmlFor="images">
-              <S.UploadImageDiv />
-            </label>
-          )}
-
-          {preview && preview[4] ? (
-            <S.UploadedImage
-              src={preview[4]}
-              onClick={() => handleDeletePreview(4)}
-            />
-          ) : (
-            <label htmlFor="images">
-              <S.UploadImageDiv />
-            </label>
-          )}
+          {Array(imgLimit - imgQuality)
+            .fill()
+            .map((index) => {
+              return (
+                <label htmlFor="images" key={index}>
+                  <S.UploadImageDiv />
+                </label>
+              )
+            })}
         </div>
       </S.Images>
 
       <S.Heading>Цена</S.Heading>
       <S.Price>
-      <Input
+        <Input
           type="number"
           width={'200px'}
           name={'price'}
@@ -203,7 +170,6 @@ const AddModal = () => {
             setValues({ ...values, price: Number(event.target.value) })
             setIsDisable(false)
           }}
-          required={true}
         />
       </S.Price>
 
@@ -215,7 +181,6 @@ const AddModal = () => {
         Опубликовать
       </Button>
     </S.StyledAddModal>
-  );
-};
-
+  )
+}
 export default AddModal;
