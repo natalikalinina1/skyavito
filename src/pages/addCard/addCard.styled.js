@@ -85,7 +85,7 @@ export const SellerLink = styled(Link)`
   color:  ${({ theme }) => theme.colors.primaryBlue};
 `
 
-export const SellerImg = styled.div`
+export const SellerImg = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;

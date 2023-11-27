@@ -44,18 +44,20 @@ export const cardApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Card'],
     }),
-    deleteAddImage: builder.mutation({
-      query: ({ id, query }) => ({
-        url: `ads/${id}/image/${query}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Card'],
-    }),
+    
     uploadImageToAdd: builder.mutation({
       query: ({ id, body }) => ({
         url: `ads/${id}/image`,
         method: 'POST',
         body,
+      }),
+      invalidatesTags: ['Card'],
+    }),
+    
+    deleteAddImage: builder.mutation({
+      query: ({ id, query }) => ({
+        url: `ads/${id}/image/${query}`,
+        method: 'DELETE',
       }),
       invalidatesTags: ['Card'],
     }),

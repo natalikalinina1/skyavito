@@ -8,6 +8,7 @@ import Reviews from "../ReviewModal/Reviews";
 import { isModalOpen } from "../../../features/modal/modalSlice";
 import { useDispatch } from "react-redux";
 import UpdateModal from "../AddUpdateModal/UpdateModal";
+import ChangePasswordModal from "../AuthForm/ChangePassword";
 
 const Modal = ({ modal, reviews }) => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Modal = ({ modal, reviews }) => {
         {modal === "add-modal" && <AddModal />}
         {modal === "update-modal" && <UpdateModal />}
         {modal === "reviews" && <Reviews reviews={reviews} />}
+        {modal === "change-modal" && <ChangePasswordModal />}
       </S.Content>
     </>,
     document.getElementById("portal") // рендер компонентов с id 'portal'

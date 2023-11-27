@@ -9,7 +9,7 @@ export const StyledReview = styled.div`
   margin: 20px 12px 56px 50px;
   padding-right: 80px;
 
-  width: 652px;
+  max-width: 652px;
   max-height: 900px;
   overflow: hidden;
   overflow-y: auto;
@@ -30,6 +30,21 @@ export const StyledReview = styled.div`
   &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.05);
     border-radius: 10px;
+  }
+  @media (max-height: 1000px) {
+    max-height: 600px;
+  }
+  @media (max-height: 900px) {
+    max-height: 500px;
+  }
+  @media (max-height: 600px) {
+    max-height: 400px;
+  }
+  @media (max-width: 1000px) {
+    width: 500px;
+  }
+  @media (max-width: 700px) {
+    width: 400px;
   }
 `
 

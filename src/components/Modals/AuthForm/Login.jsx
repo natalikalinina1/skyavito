@@ -4,7 +4,7 @@ import ButtonSignUp from "../../Buttons/ButtonSignUp.jsx";
 import * as S from "./authForm.styled";
 import { getModal } from "../../../features/modal/modalSlice.js";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLoginUserMutation } from "../../../features/auth/authApi.js";
 import { isModalOpen } from "../../../features/modal/modalSlice.js";
 import { useNavigate } from "react-router-dom";
@@ -22,20 +22,9 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+ 
+  const [login, { isLoading }] = useLoginUserMutation({})
 
-  const [login, { isLoading, isError, error }] = useLoginUserMutation({})
-
-  useEffect(() => {
-    if (isError) {
-      setErrorMessage('Неверный логин или пароль')
-    } else if (email === '' && password === '') {
-      setErrorMessage('Введите email и пароль')
-    } else if (email === '') {
-      setErrorMessage('Введите email')
-    } else if (password === '') {
-      setErrorMessage('Введите пароль')
-    }
-  }, [error, isError, email, password])
 
   const handleEmail = (event) => {
     setEmail(event.target.value)
@@ -44,11 +33,17 @@ const Login = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value)
   }
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    if (email && password) {
+    if (email === '' && password === '') {
+      setErrorMessage('Введите email и пароль')
+    } else if (email === '') {
+      setErrorMessage('Введите email')
+    } else if (password === '') {
+      setErrorMessage('Введите пароль')
+    } else {
       try {
         const tokens = await login({
           email,
@@ -71,11 +66,11 @@ const Login = () => {
         navigate('/profile')
       } catch (err) {
         console.log(err)
-        setErrorMessage('Произошла ошибка')
+        setErrorMessage('Неверный логин или пароль')
       }
     }
   }
-
+  
   return (
     <>
       <S.Form onSubmit={(event) => handleSubmit(event)}>
@@ -99,6 +94,7 @@ const Login = () => {
         <Button type="submit" margin="60px 0 20px 0" width="278px">
           {isLoading ? <Preloader /> : " Войти"}
         </Button>
+      
         <ButtonSignUp
           onClick={() => {
             dispatch(getModal("sign-up"));
@@ -106,6 +102,7 @@ const Login = () => {
         >
           Зарегистрироваться
         </ButtonSignUp>
+        
       </S.Form>
     </>
   );

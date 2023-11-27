@@ -10,6 +10,7 @@ const usersSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload
+      
     },
     changeUserInfo: (state, action) => {
         state.currentUser.name = action.payload.name
@@ -17,9 +18,12 @@ const usersSlice = createSlice({
         state.currentUser.phone = action.payload.phone
         state.currentUser.city = action.payload.city
       },
+      setCurrentUserPassword: (state, action) => {
+        state.currentUser.password = action.payload; // Обновление пароля пользователя в состоянии
+      },
   },
 })
 
-export const { setCurrentUser, changeUserInfo } = usersSlice.actions
+export const { setCurrentUser, changeUserInfo,setCurrentUserPassword } = usersSlice.actions
 
 export default usersSlice.reducer

@@ -12,22 +12,23 @@ import { BASE_URL } from '../../features/api/apiSlice'
 import { Preloader } from "../../styles/preloader.styles";
 
 const ProfileForm = ({ isSuccess, avatarImg }) => {
-  const dispatch = useDispatch();
-  const inputRef = React.createRef();
+  const dispatch = useDispatch()
+  const inputRef = React.createRef()
+
   const avatarImgSrc =
-  avatarImg !== null ? `${BASE_URL}${avatarImg}` : '/img/icon_01.png'
-  const user = useSelector((state) => state.users?.currentUser);
+    avatarImg !== null ? `${BASE_URL}${avatarImg}` : '/img/icon_01.png'
+
+  const user = useSelector((state) => state.users?.currentUser)
 
   const [values, setValues] = useState({
     name: user?.name,
     surname: user?.surname,
     city: user?.city,
     phone: user?.phone,
-  });
+  })
 
-  const [isActive, setIsActive] = useState(true);
-  const [avatar, setAvatar] = useState(null);
-
+  const [isActive, setIsActive] = useState(true)
+  const [avatar, setAvatar] = useState(null)
   const [avatarPreview, setAvatarPreview] = useState(null)
 
   const [
@@ -44,49 +45,53 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
   const handleAvatar = (event) => {
     setAvatar(event.target.files[0])
     setAvatarPreview(event.target.files[0])
+
+    setIsActive(false)
+  }
+  
+
+  const handleName = (event) => {
+  
+    setValues({ ...values, name: event.target.value })
+    dispatch(changeUserInfo(values.name))
     setIsActive(false)
   }
 
-  const handleName = (event) => {
-    setValues({ ...values, name: event.target.value });
-    dispatch(changeUserInfo(values.name));
-    setIsActive(false);
-  };
-
   const handleSurname = (event) => {
-    setValues({ ...values, surname: event.target.value });
-    dispatch(changeUserInfo(values.surname));
-    setIsActive(false);
-  };
+    setValues({ ...values, surname: event.target.value })
+    dispatch(changeUserInfo(values.surname))
+    setIsActive(false)
+  }
 
   const handleCity = (event) => {
-    setValues({ ...values, city: event.target.value });
-    dispatch(changeUserInfo(values.city));
-    setIsActive(false);
-  };
+    setValues({ ...values, city: event.target.value })
+    dispatch(changeUserInfo(values.city))
+    setIsActive(false)
+  }
 
   const handlePhone = (event) => {
-    setValues({ ...values, phone: event.target.value });
-    dispatch(changeUserInfo(values.phone));
-    setIsActive(false);
-  };
+    setValues({ ...values, phone: event.target.value })
+    dispatch(changeUserInfo(values.phone))
+    setIsActive(false)
+  }
 
   const handleSubmit = async (async) => {
     try {
-      await changeUser(values).unwrap();
-      setIsActive(true);
+      await changeUser(values).unwrap()
+      setIsActive(true)
+
       if (avatar) {
         const formData = new FormData()
         formData.append('file', avatar)
         changeAvatar(formData)
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   useEffect(() => {
-     if (isUserChangeError) {
+    if (isUserChangeError) {
       console.log(userChangeError)
     }
   }, [isUserChangeError, userChangeError])
@@ -97,17 +102,16 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
     }
   }, [isSuccess])
 
-
   return (
     <S.AccountForm onSubmit={(event) => event.preventDefault()}>
       <S.Image>
         <img
-         src={
-          avatarPreview ? URL.createObjectURL(avatarPreview) : avatarImgSrc
-        }
+          src={
+            avatarPreview ? URL.createObjectURL(avatarPreview) : avatarImgSrc
+          }
           alt="avatar"
         />
-     <input
+        <input
           type="file"
           id="avatar"
           onChange={(event) => handleAvatar(event)}
@@ -172,12 +176,17 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
             />
           </div>
         </S.Inputs>
-        <Button>
-          {isUserChangeLoading ? <Preloader /> : 'Сохранить'}
+
+        <Button
+          disabled={isActive}
+          onClick={() => handleSubmit()}
+          margin="30px 0  0 0"
+        >
+          {isUserChangeLoading ? <Preloader />  : 'Сохранить'}
         </Button>
       </S.Data>
     </S.AccountForm>
-  );
-};
+  )
+}
 
-export default ProfileForm;
+export default ProfileForm

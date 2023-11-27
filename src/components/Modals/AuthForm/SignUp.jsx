@@ -4,7 +4,7 @@ import ButtonSignUp from "../../Buttons/ButtonSignUp.jsx";
 import * as S from "./authForm.styled";
 import { getModal, isModalOpen } from "../../../features/modal/modalSlice.js";
 import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSignUserUpMutation } from "../../../features/auth/authApi.js";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../features/auth/authSlice.js";
@@ -27,42 +27,39 @@ const SignUp = () => {
   const [repeatPswd, setRepeatPswd] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const [signUp, { isLoading, isError }] = useSignUserUpMutation()
-
-  useEffect(() => {
-    if (isError) {
-      setErrorMessage('Неверный логин или пароль')
-    } else if (userInfo.email === '' && userInfo.password === '') {
-      setErrorMessage('Введите email и пароль')
-    } else if (userInfo.email === '') {
-      setErrorMessage('Введите email')
-    } else if (userInfo.password === '') {
-      setErrorMessage('Введите пароль')
-    }
-  }, [isError, userInfo])
+  const [signUp, { isLoading }] = useSignUserUpMutation()
 
   const isValid = userInfo.password === repeatPswd && userInfo.email
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    try {
-      if (isValid) {
-        await signUp({ ...userInfo }).unwrap()
+    if (userInfo.email === '' && userInfo.password === '') {
+      setErrorMessage('Введите email и пароль')
+    } else if (userInfo.email === '') {
+      setErrorMessage('Введите email')
+    } else if (userInfo.password === '') {
+      setErrorMessage('Введите пароль')
+    } else {
+      try {
+        if (isValid) {
+          await signUp({ ...userInfo }).unwrap()
 
-        setErrorMessage(null)
-        setUserInfo('')
-        setRepeatPswd('')
-        dispatch(setUser(true))
+          setErrorMessage(null)
+          setUserInfo('')
+          setRepeatPswd('')
+          dispatch(setUser(true))
 
-        dispatch(isModalOpen(false))
-        navigate('/profile')
-      } else {
-        setErrorMessage('Пароли не совпадают')
+          dispatch(isModalOpen(false))
+          navigate('/profile')
+        } else {
+          setErrorMessage('Пароли не совпадают')
+        }
+      } catch (err) {
+        console.log(err)
+        setErrorMessage('Произошла ошибка')
       }
-    } catch (err) {
-      console.log(err)
-      setErrorMessage('Произошла ошибка')
+  
     }
   }
 

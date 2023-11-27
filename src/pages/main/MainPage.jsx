@@ -18,7 +18,6 @@ const MainPage = () => {
     isLoading,
     isSuccess,
     isError,
-    error,
   } = useGetAllCardQuery();
 
   const { data: users } = useGetUsersQuery();
@@ -48,7 +47,7 @@ const MainPage = () => {
       />
     );
   } else if (isError) {
-    content = { error };
+    content = <p>Произошла ошибка</p>
   }
 
   return (

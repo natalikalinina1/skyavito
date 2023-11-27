@@ -1,19 +1,27 @@
 import * as S from "./reviewsModal.styled";
 import { useSelector } from 'react-redux'
 import { BASE_URL } from '../../../features/api/apiSlice'
+import createdOn from '../../../components/Card/utils'
+
 
 const Review = ({ review }) => {
-  const users = useSelector((state) => state.adds?.users)
+  const users = useSelector((state) => state.card?.users)
   const user = users.filter((user) => user.id === review.author_id)
+  const userAvatar = user[0]?.avatar
+  ? `${BASE_URL}${user[0]?.avatar}`
+  : '/img/no_picture.png'
+
   return (
     <S.ReviewContainer>
       <div>
-        <S.Image src={`${BASE_URL}${user[0]?.avatar}`} />
+        <S.Image src={userAvatar}/>
       </div>
       <S.ReviewDetails>
         <S.NameDate>
         <p>{user[0]?.name}</p>
-          <span>{review?.created_on}</span>
+        <span>
+            {createdOn(review?.created_on)}
+          </span>
         </S.NameDate>
 
         <S.ReviewContent>
