@@ -29,6 +29,14 @@ const Layout = () => {
             >
               Разместить объявление
               </ButtonHeader>
+              <ButtonHeader  margin={'0 10px'}
+          onClick={() => {
+            dispatch(isModalOpen(true))
+            dispatch(getModal("change-modal"));
+          }}
+        >
+         Сменить пароль
+        </ButtonHeader>
 
             <Link to="profile">
               <ButtonHeader>Личный кабинет</ButtonHeader>
@@ -42,6 +50,7 @@ const Layout = () => {
               }}>
               Вход в личный кабинет
             </ButtonHeader>
+
           </S.Nav>
         )}
       </S.Header>

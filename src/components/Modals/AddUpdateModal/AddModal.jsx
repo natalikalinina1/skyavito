@@ -9,12 +9,22 @@ import {
 import { useState, useEffect } from 'react'
 import { isModalOpen } from '../../../features/modal/modalSlice'
 import { useDispatch } from 'react-redux'
+import { Preloader } from "../../../styles/preloader.styles";
 
 const AddModal = () => {
   const imgLimit = 5
   const dispatch = useDispatch()
-  const [createAdd] = useCreateAddMutation()
-  const [createAddWithNoImages] = useCreateAddWithNoImagesMutation()
+  const [
+    createAdd,
+    { isSuccess: isCreateSuccess, isLoading: isCreateLoading },
+  ] = useCreateAddMutation()
+  const [
+    createAddWithNoImages,
+    {
+      isSuccess: isCreateWithNoCardSuccess,
+      isLoading: isCreateWithNoCardLoading,
+    },
+  ] = useCreateAddWithNoImagesMutation()
 
   const [isDisable, setIsDisable] = useState(true)
   const [imgQuality, setImgQuality] = useState(0)
@@ -25,7 +35,6 @@ const AddModal = () => {
     files: [],
     price: 0,
   })
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -52,8 +61,6 @@ const AddModal = () => {
           const response = createAddWithNoImages(data)
           console.log(response)
         }
-
-        dispatch(isModalOpen(false))
       } catch (err) {
         console.log(err)
       }
@@ -62,8 +69,8 @@ const AddModal = () => {
 
   const handlePictureChange = (event) => {
     const newFiles = Object.values(event.target.files)
-    .map((file) => file)
-    .slice(0, 5)
+      .map((file) => file)
+      .slice(0, 5)
 
     if (newFiles) {
       const updatedList = [...values.files, ...newFiles]
@@ -86,6 +93,7 @@ const AddModal = () => {
     })
     setPreview(preview.slice(id, 1))
   }
+
   useEffect(() => {
     if (values.files.length === 0) {
       setPreview([])
@@ -99,6 +107,12 @@ const AddModal = () => {
     setPreview(objectUrl)
     setImgQuality(objectUrl.length)
   }, [values.files])
+
+  useEffect(() => {
+    if (isCreateSuccess || isCreateWithNoCardSuccess) {
+      dispatch(isModalOpen(false))
+    }
+  }, [isCreateSuccess, isCreateWithNoCardSuccess, dispatch])
 
   return (
     <S.StyledAddModal>
@@ -150,10 +164,10 @@ const AddModal = () => {
 
           {Array(imgLimit - imgQuality)
             .fill()
-            .map((index) => {
+            .map((item, i) => {
               return (
-                <label htmlFor="images" key={index}>
-                  <S.UploadImageDiv />
+                <label key={i} htmlFor="images">
+                <S.UploadImageDiv key={i} />
                 </label>
               )
             })}
@@ -178,7 +192,11 @@ const AddModal = () => {
         disabled={isDisable}
         onClick={(event) => handleSubmit(event)}
       >
-        Опубликовать
+       {isCreateLoading || isCreateWithNoCardLoading ? (
+          <Preloader />
+        ) : (
+          'Опубликовать'
+        )}
       </Button>
     </S.StyledAddModal>
   )

@@ -2,8 +2,9 @@ import Button from "../../Buttons/Button";
 import TextArea from "../../InputForm/TextArea";
 import * as S from "./reviewsModal.styled";
 import { useAddReviewMutation } from '../../../features/reviews/reviewApi'
-import { useState, useEffect, useref} from 'react'
+import { useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import { Preloader } from "../../../styles/preloader.styles";
 
 const AddReview = () => {
   const { id } = useParams()
@@ -15,8 +16,7 @@ const AddReview = () => {
     setIsActive(true)
   }
 
-  const [addReview, { isLoading, isSuccess, isError, error }] =
-    useAddReviewMutation(Number(id))
+  const [addReview, { isLoading, isSuccess }] = useAddReviewMutation(Number(id))
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -53,7 +53,7 @@ const AddReview = () => {
         onChange={(event) => handleChange(event)}/>
 
       <Button  width="181px" type="submit" disabled={!isActive}>
-        Опубликовать </Button>
+      {isLoading ? <Preloader /> : 'Опубликовать' }</Button>
     </S.AddReviewContainer>
   );
 };

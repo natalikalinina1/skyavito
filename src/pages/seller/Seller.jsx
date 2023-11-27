@@ -10,7 +10,6 @@ const Seller = () => {
   const allCard = useSelector((state) => state.card?.allCard);
 
   const { id } = useParams();
-
   const seller = users?.filter((user) => Number(user.id) === Number(id))
   const sellerCard = allCard?.filter(
     (add) => Number(add.user_id) === Number(id)
@@ -21,7 +20,7 @@ const Seller = () => {
     <>
       <S.Title>Профиль продавца</S.Title>
       <S.SellerInfo>
-        <S.SellerImage
+      <S.Image
           src={
             seller[0]?.avatar
               ? `${BASE_URL}${seller[0].avatar}`
