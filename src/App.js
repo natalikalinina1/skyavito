@@ -12,6 +12,7 @@ import NotFound from "./pages/notFound/NotFound";
 import Seller from "./pages/seller/Seller";
 import RefreshToken from "./features/api/refreshToken";
 import { Suspense } from 'react'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>

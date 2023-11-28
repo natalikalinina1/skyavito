@@ -16,6 +16,7 @@ import {
 import { Preloader } from "../../../styles/preloader.styles.js";
 
 const Login = () => {
+  
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -23,7 +24,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
  
-  const [login, { isLoading }] = useLoginUserMutation({})
+  const [login, { isLoading }] = useLoginUserMutation({})//отправляет запрос на сервер
 
 
   const handleEmail = (event) => {
