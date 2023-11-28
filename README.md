@@ -7,13 +7,13 @@ Cайт онлайн объявлений, аналог "Авито".
 ## Структура и функционал приложения
 
 ### Главная страница приложения
-![images](https://github.com/natalikalinina1/skyavito/master/assets/mainPage.JPG)
+![images](https://raw.githubusercontent.com/natalikalinina1/skyavito/master/assets/mainPage.JPG)
 - [x] Пользователь имеет возможность авторизации и регистрации на сайте.
 - [x] Пользователь может осуществлять поиск по объявлениям с помощью строки поиска товара.
 - [x] Пользователь может просматривать профиль продавца, получать номер телефона продавца и оставлять комментарии к товару.
 
 ### Страница профиля
-![images](https://github.com/natalikalinina1/skyavito/assets/Profill.JPG)
+![images](https://raw.githubusercontent.com/natalikalinina1/skyavito/master/assets/Profill.JPG)
 - [x] В личном кабинете отображается: имя, фамилия, аватарка и телефон.
 - [x] Все поля могут редактироваться.
 - [x] Если пользователь не редактировал эти поля, то кнопка “Сохранить” неактивна. 
@@ -28,21 +28,21 @@ Cайт онлайн объявлений, аналог "Авито".
 - [x] Есть возможность снять свое объявление с публикации.
 
 ### Страница продавца
-![images](https://github.com/natalikalinina1/skyavito/assets/Seller.JPG)
+![images](https://raw.githubusercontent.com/natalikalinina1/skyavito/master/assets/Seller%20.JPG)
 - [x] Информация о продавце: аватарка, имя, фамилия, город, дата размещения первого объявления.
 - [x] Кнопка для отображения телефона продавца.
 - [x] Список всех товаров продавца.
 
 ### Страница / модальное окно отзывов
-![images](https://github.com/natalikalinina1/skyavito/assets/ReviewModal.JPG)
+![images](https://raw.githubusercontent.com/natalikalinina1/skyavito/master/assets/ReviewModal.JPG)
 - [x] Список всех отзывов о товаре с указанием имени продавца, его аватарки и даты размещения отзыва.
 
 ### Страница / модальное окно создания нового объявления
-![images](https://github.com/natalikalinina1/skyavito/assets/AddModal.JPG)
+![images](https://raw.githubusercontent.com/natalikalinina1/skyavito/master/assets/ReviewModal.JPG)
 - [x] По клику на кнопку “Разместить объявление” открывается модальное окно и у продавца есть возможность добавить цену, наименование и описание товара, а также загрузить до 5 фотографий. В конце окна кнопка “Опубликовать”.
 
 ### Страница / модальное окно редактирования объявления
-![images](https://github.com/natalikalinina1/skyavito/assets/UpdateAdd.JPG)
+![images](https://raw.githubusercontent.com/natalikalinina1/skyavito/master/assets/UpdateAdd.JPG)
 - [x] Пользователь имеет возможность изменить название, описание, цену товара, а также удалить / загрузить до 5 фотографий.
 
 ## Запуск приложения:
