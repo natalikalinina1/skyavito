@@ -94,94 +94,91 @@ const UpdateModal = () => {
     console.log(limit)
   }, [preview, limit])
 
-  return (
-    <S.StyledAddModal>
-      <S.Title>Редактировать объявление</S.Title>
-      <S.Heading>Название</S.Heading>
-      <Input
-        type="text"
-        width={'100%'}
-        placeholder={add.title}
-        onChange={(event) => {
-          setValues({ ...values, title: event.target.value })
-        }}
-      />
-
-      <S.Heading>Описание</S.Heading>
-      <TextArea
-        width={'100%'}
-        height={'200px'}
-        placeholder={add.description}
-        onChange={(event) => {
-          setValues({ ...values, description: event.target.value })
-        }}
-      />
-
-      <S.Images>
-        <div>
-          <S.Heading>Фотографии товара</S.Heading>
-          <span>не более 5 фотографий</span>
-        </div>
-        <div>
-        <input
-            type="file"
-            multiple
-            id="images"
-            onChange={(event) => handlePictureChange(event)}
-          />
-
-     {add?.images.map((img) => (
-            <S.UploadedImage
-              src={`${BASE_URL}${img.url}`}
-              key={img.id}
-              alt={add.title}
-              onClick={() => handleDeleteImage(img.url)}
-            />
-          ))}
- {preview &&
-            preview.map((preview, i) => (
-              <S.UploadedImage
-                src={preview}
-                alt={add.title}
-                key={i}
-                // onClick={() => handleDeletePreview(i)}
-              />
-            ))}
-
-          {Array(limit)
-            .fill()
-            .map((i) => {
-              return (
-                <label key={i} htmlFor="images">
-                  <S.UploadImageDiv key={i} />
-                </label>
-              )
-            })}
-        </div>
-      </S.Images>
-
-      <S.Heading>Цена</S.Heading>
-      <S.Price>
-      <Input
-          type="text"
-          width={'200px'}
-          placeholder={add.price}
-          onChange={(event) => {
-            setValues({ ...values, price: event.target.value })
-          }}
-        />
-      </S.Price>
-
-      <Button
-        margin={'10px 0 0 0'}
-        disabled={isDisable}
-        type="submit"
-        onClick={(event) => handleSubmit(event)}
-      >
- {isChangeAddLoading ? <Preloader /> : 'Сохранить'}
-      </Button>
-    </S.StyledAddModal>
-  );
+  return ( 
+    <S.StyledAddModal> 
+      <S.Title>Редактировать объявление</S.Title> 
+      <S.Heading>Название</S.Heading> 
+      <Input 
+        type="text" 
+        width={'100%'} 
+        placeholder={add.title} 
+        onChange={(event) => { 
+          setValues({ ...values, title: event.target.value }) 
+        }} 
+      /> 
+  
+      <S.Heading>Описание</S.Heading> 
+      <TextArea 
+        width={'100%'} 
+        height={'200px'} 
+        placeholder={add.description} 
+        onChange={(event) => { 
+          setValues({ ...values, description: event.target.value }) 
+        }} 
+      /> 
+  
+      <S.Images> 
+        <div> 
+          <S.Heading>Фотографии товара</S.Heading> 
+          <span>не более 5 фотографий</span> 
+        </div> 
+        <div> 
+          <input 
+            type="file" 
+            multiple 
+            id="images" 
+            onChange={(event) => handlePictureChange(event)} 
+          /> 
+  
+          {add?.images.map((img) => ( 
+            <S.UploadedImage 
+              src={`${BASE_URL}${img.url}`} 
+              key={img.id} 
+              alt={add.title} 
+              onClick={() => handleDeleteImage(img.url)} 
+            /> 
+          ))} 
+          {preview && 
+            preview.map((preview, index) => ( 
+              <S.UploadedImage 
+                src={preview} 
+                alt={add.title} 
+                key={index} 
+              /> 
+            ))} 
+  
+          {Array(limit) 
+            .fill() 
+            .map((_, index) => ( 
+              <label htmlFor="images" key={index}> 
+                <S.UploadImageDiv /> 
+              </label> 
+            ))} 
+        </div> 
+      </S.Images> 
+  
+      <S.Heading>Цена</S.Heading> 
+      <S.Price> 
+        <Input 
+          type="text" 
+          width={'200px'} 
+          placeholder={add.price} 
+          onChange={(event) => { 
+            setValues({ ...values, price: event.target.value }) 
+          }} 
+        /> 
+      </S.Price> 
+  
+      <Button 
+        margin={'10px 0 0 0'} 
+        disabled={isDisable} 
+        type="submit" 
+        onClick={(event) => handleSubmit(event)} 
+      > 
+        {isChangeAddLoading ? <Preloader /> : 'Сохранить'} 
+      </Button> 
+    </S.StyledAddModal> 
+  ); 
 };
 
 export default UpdateModal;

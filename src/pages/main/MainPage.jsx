@@ -7,18 +7,12 @@ import { useEffect } from "react";
 import { useGetUsersQuery } from "../../features/users/usersApi";
 import { Preloader } from "../../styles/preloader.styles";
 
-
 const MainPage = () => {
   const dispatch = useDispatch();
   const allCard = useSelector((state) => state.card?.allCard);
   const searchValue = useSelector((state) => state.card?.search);
 
-  const {
-    data: card,
-    isLoading,
-    isSuccess,
-    isError,
-  } = useGetAllCardQuery();
+  const { data: card, isLoading, isSuccess, isError } = useGetAllCardQuery();
 
   const { data: users } = useGetUsersQuery();
 
@@ -35,7 +29,7 @@ const MainPage = () => {
   let content;
 
   if (isLoading) {
-    content = <Preloader/>
+    content = <Preloader />;
   } else if (isSuccess) {
     content = (
       <Card
@@ -47,7 +41,7 @@ const MainPage = () => {
       />
     );
   } else if (isError) {
-    content = <p>Произошла ошибка</p>
+    content = <p>Произошла ошибка</p>;
   }
 
   return (

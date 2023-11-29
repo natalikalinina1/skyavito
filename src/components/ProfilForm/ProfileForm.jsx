@@ -128,7 +128,6 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
               id="name"
               type="text"
               width="300px"
-              placeholderColor="#000"
               onChange={(event) => handleName(event)}
               ref={inputRef}
             />
@@ -142,7 +141,6 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
               type="text"
               id="surname"
               width="300px"
-              placeholderColor="#000"
               onChange={(event) => handleSurname(event)}
               ref={inputRef}
             />
@@ -156,7 +154,6 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
               type="text"
               id="city"
               width="300px"
-              placeholderColor="#000"
               onChange={(event) => handleCity(event)}
               ref={inputRef}
             />
@@ -170,7 +167,6 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
               type="tel"
               id="phone"
               width="614px"
-              placeholderColor="#000"
               onChange={(event) => handlePhone(event)}
               ref={inputRef}
             />

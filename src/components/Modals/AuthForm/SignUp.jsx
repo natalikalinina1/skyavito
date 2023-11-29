@@ -11,58 +11,70 @@ import { setUser } from "../../../features/auth/authSlice.js";
 import { Preloader } from "../../../styles/preloader.styles.js";
 
 const SignUp = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate
+  const dispatch = useDispatch();
+  const navigate = useNavigate;
 
   const [userInfo, setUserInfo] = useState({
-    password: '',
-    role: 'user',
-    email: '',
-    name: '',
-    surname: '',
-    phone: '',
-    city: '',
-  })
+    password: "",
+    role: "user",
+    email: "",
+    name: "",
+    surname: "",
+    phone: "",
+    city: "",
+  });
 
-  const [repeatPswd, setRepeatPswd] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [repeatPswd, setRepeatPswd] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const [signUp, { isLoading }] = useSignUserUpMutation()
+  const [signUp, { isLoading }] = useSignUserUpMutation();
 
-  const isValid = userInfo.password === repeatPswd && userInfo.email
+  const isValid = userInfo.password === repeatPswd && userInfo.email;
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    if (userInfo.email === '' && userInfo.password === '') {
-      setErrorMessage('Введите email и пароль')
-    } else if (userInfo.email === '') {
-      setErrorMessage('Введите email')
-    } else if (userInfo.password === '') {
-      setErrorMessage('Введите пароль')
+    if (nameError !== "") {
+      setErrorMessage(nameError);
+    } else if (passwordError !== "") {
+      setErrorMessage(passwordError);
+    } else if (userInfo.email === "" && userInfo.password === "") {
+      setErrorMessage("Введите email и пароль");
+    } else if (userInfo.email === "") {
+      setErrorMessage("Введите email");
+    } else if (userInfo.password === "") {
+      setErrorMessage("Введите пароль");
     } else {
       try {
         if (isValid) {
-          await signUp({ ...userInfo }).unwrap()
+          await signUp({ ...userInfo }).unwrap();
 
-          setErrorMessage(null)
-          setUserInfo('')
-          setRepeatPswd('')
-          dispatch(setUser(true))
+          setErrorMessage(null);
+          setUserInfo({
+            password: "",
+            role: "user",
+            email: "",
+            name: "",
+            surname: "",
+            phone: "",
+            city: "",
+          });
+          setRepeatPswd("");
+          dispatch(setUser(true));
 
-          dispatch(isModalOpen(false))
-          navigate('/profile')
+          dispatch(isModalOpen(false));
+          navigate("/profile");
         } else {
-          setErrorMessage('Пароли не совпадают')
+          setErrorMessage("Пароли не совпадают");
         }
       } catch (err) {
-        console.log(err)
-        setErrorMessage('Произошла ошибка')
+        console.log(err);
+        setErrorMessage("Произошла ошибка");
       }
-  
     }
-  }
-
+  };
   return (
     <S.Form onSubmit={(event) => handleSubmit(event)}>
       <S.LogoContainer>
@@ -85,12 +97,17 @@ const SignUp = () => {
 
       <Input
         type="password"
-        onChange={(event) =>
-          setUserInfo({
-            ...userInfo,
-            password: event.target.value,
-          })
-        }
+        onChange={(event) => {
+          if (event.target.value.length < 6) {
+            setPasswordError("Пароль должен быть не менее чем из 6 символов");
+          } else {
+            setPasswordError("");
+            setUserInfo({
+              ...userInfo,
+              password: event.target.value,
+            });
+          }
+        }}
         placeholder={"Пароль"}
         name="password"
         width="278px"
@@ -106,12 +123,17 @@ const SignUp = () => {
       />
 
       <Input
-        onChange={(event) =>
-          setUserInfo({
-            ...userInfo,
-            name: event.target.value,
-          })
-        }
+        onChange={(event) => {
+          if (event.target.value.length < 2) {
+            setNameError("Имя должно состоять не менее чем из 2 символов");
+          } else {
+            setNameError("");
+            setUserInfo({
+              ...userInfo,
+              name: event.target.value,
+            });
+          }
+        }}
         placeholder={"Имя (необязательно)"}
         name="name"
         width="278px"

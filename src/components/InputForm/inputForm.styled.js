@@ -10,6 +10,7 @@ export const StyledInput = styled.input`
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+  
   &:focus {
     outline: ${({ theme }) => `1px solid ${theme.colors.primaryBlue}`};
   }

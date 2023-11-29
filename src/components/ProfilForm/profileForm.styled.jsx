@@ -44,6 +44,10 @@ export const Inputs = styled.div`
   div:focus-within label {
     color: #009ee4;
   }
+
+::placeholder {
+    color: #000;
+  }
 `;
 
 export const Label = styled.label`
