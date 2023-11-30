@@ -11,6 +11,7 @@ import {
 import { BASE_URL } from '../../features/api/apiSlice'
 import { Preloader } from "../../styles/preloader.styles";
 
+
 const ProfileForm = ({ isSuccess, avatarImg }) => {
   const dispatch = useDispatch()
   const inputRef = React.createRef()
@@ -38,11 +39,11 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
       isError: isUserChangeError,
       error: userChangeError,
     },
-  ] = useChangeUserMutation()
+  ] = useChangeUserMutation() //для изменения данных пользователя
 
   const [changeAvatar] = useUploadAvatarMutation()
 
-  const handleAvatar = (event) => {
+  const handleAvatar = (event) => {  //изменение аватара
     setAvatar(event.target.files[0])
     setAvatarPreview(event.target.files[0])
 
@@ -120,46 +121,46 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
       </S.Image>
       <S.Data>
         <S.Inputs>
-          <div>
-            <S.Label htmlFor="name">Имя</S.Label>
-            <Input
-              placeholder={user?.name}
-              name="name"
-              id="name"
-              type="text"
-              width="300px"
-              onChange={(event) => handleName(event)}
-              ref={inputRef}
-            />
-          </div>
-
-          <div>
-            <S.Label htmlFor="surname">Фамилия</S.Label>
-            <Input
-              placeholder={user?.surname}
-              name="surname"
-              type="text"
-              id="surname"
-              width="300px"
-              onChange={(event) => handleSurname(event)}
-              ref={inputRef}
-            />
-          </div>
-
-          <div>
-            <S.Label htmlFor="city">Город</S.Label>
-            <Input
-              placeholder={user?.city}
-              name="city"
-              type="text"
-              id="city"
-              width="300px"
-              onChange={(event) => handleCity(event)}
-              ref={inputRef}
-            />
-          </div>
-
-          <div>
+        <div>
+  <S.Label htmlFor="name">Имя</S.Label>
+  <Input
+    placeholder={user?.name}
+    name="name"
+    id="name"
+    type="text"
+    width="300px"
+    value={values.name}
+    onChange={(event) => handleName(event)}
+    ref={inputRef}
+  />
+</div>
+<div>
+  <S.Label htmlFor="surname">Фамилия</S.Label>
+  <Input
+    placeholder={user?.surname}
+    name="surname"
+    type="text"
+    id="surname"
+    width="300px"
+    value={values.surname}
+    onChange={(event) => handleSurname(event)}
+    ref={inputRef}
+  />
+</div>
+<div>
+  <S.Label htmlFor="city">Город</S.Label>
+  <Input
+    placeholder={user?.city}
+    name="city"
+    type="text"
+    id="city"
+    width="300px"
+    value={values.city}
+    onChange={(event) => handleCity(event)}
+    ref={inputRef}
+  />
+</div>
+<div>
             <S.Label htmlFor="phone">Телефон</S.Label>
             <Input
               placeholder={user?.phone}
@@ -167,6 +168,7 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
               type="tel"
               id="phone"
               width="614px"
+              value={values.phone}
               onChange={(event) => handlePhone(event)}
               ref={inputRef}
             />
