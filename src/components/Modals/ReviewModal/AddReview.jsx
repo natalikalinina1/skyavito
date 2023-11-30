@@ -16,7 +16,7 @@ const AddReview = () => {
     setIsActive(true)
   }
 
-  const [addReview, { isLoading, isSuccess }] = useAddReviewMutation(Number(id))
+  const [addReview, { isLoading, isSuccess }] = useAddReviewMutation(Number(id)) //coздает состояние addReview и деструктур-ии полученных знач-й isLoading, isSuccess
 
   const handleSubmit = async (event) => {
     event.preventDefault()
