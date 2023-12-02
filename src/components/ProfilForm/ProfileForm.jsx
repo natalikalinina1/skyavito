@@ -71,12 +71,13 @@ const ProfileForm = ({ isSuccess, avatarImg }) => {
   }
 
   const handlePhone = (event) => {
-    setValues({ ...values, phone: event.target.value })
+    const phoneValue = event.target.value.replace(/[^\d]/g, '')
+    setValues({ ...values, phone: phoneValue })
     dispatch(changeUserInfo(values.phone))
     setIsActive(false)
   }
 
-  const handleSubmit = async (async) => {
+  const handleSubmit = async () => {
     try {
       await changeUser(values).unwrap()
       setIsActive(true)
