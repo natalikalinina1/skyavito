@@ -23,21 +23,23 @@ const ChangePasswordModal = () => {
     setNewPassword(event.target.value); 
   };
 
-  const handleSubmit = async (event) => { 
-    event.preventDefault(); 
-    if (oldPassword === '' || newPassword === '') { 
-      setErrorMessage('Заполните оба поля'); 
-    } else { 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (oldPassword === '' || newPassword === '') {
+      setErrorMessage('Заполните оба поля');
+    } else if (newPassword.length < 6) {
+      setErrorMessage('Пароль должен содержать не менее 6 символов');
+    } else {
       try {
         const response = await changePassword({ password_1: oldPassword, password_2: newPassword });
         dispatch(setCurrentUserPassword(response.data));
-        setErrorMessage(''); 
-        dispatch(isModalOpen(false)); 
-      } catch (error) { 
-        setErrorMessage('Ошибка при изменении пароля'); 
-      } 
-    } 
-  }; 
+        setErrorMessage('');
+        dispatch(isModalOpen(false));
+      } catch (error) {
+        setErrorMessage('Ошибка при изменении пароля');
+      }
+    }
+  };
 
   return  (
         
