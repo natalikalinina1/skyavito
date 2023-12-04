@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledReview = styled.div`
   display: flex;
@@ -46,13 +46,13 @@ export const StyledReview = styled.div`
   @media (max-width: 700px) {
     width: 400px;
   }
-`
+`;
 
 export const Title = styled.h1`
   font-weight: 500;
   font-size: 32px;
   line-height: 220%;
-`
+`;
 
 export const ReviewContainer = styled.div`
   display: flex;
@@ -73,7 +73,7 @@ export const ReviewContainer = styled.div`
     color: ${({ theme }) => theme.colors.black};
     margin: 0;
   }
-`
+`;
 
 export const Image = styled.img`
   width: 40px;
@@ -81,14 +81,14 @@ export const Image = styled.img`
   border-radius: 50%;
 
   background: ${({ theme }) => theme.colors.imgBackGround};
-`
+`;
 
 export const ReviewDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-`
+`;
 
 export const NameDate = styled.div`
   display: flex;
@@ -102,7 +102,7 @@ export const NameDate = styled.div`
     line-height: 200%;
     color: #5f5f5f;
   }
-`
+`;
 
 export const ReviewContent = styled.div`
   span {
@@ -111,7 +111,7 @@ export const ReviewContent = styled.div`
     line-height: 150%;
     color: ${({ theme }) => theme.colors.black};
   }
-`
+`;
 
 export const AddReviewContainer = styled.form`
   display: flex;
@@ -131,4 +131,4 @@ export const AddReviewContainer = styled.form`
     height: 100px;
     text-align: start;
   }
-`
+`;

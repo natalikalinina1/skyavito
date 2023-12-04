@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   allCard: null,
@@ -7,34 +7,34 @@ const initialState = {
   users: null,
   currentAddImages: null,
   userCard: null,
-}
+};
 
 const cardSlice = createSlice({
   name: 'card',
   initialState: initialState,
   reducers: {
     getAllCard: (state, action) => {
-      state.allCard = action.payload
+      state.allCard = action.payload;
     },
     getCurrentAdd: (state, action) => {
-      state.currentAdd = action.payload
+      state.currentAdd = action.payload;
     },
     getSearchValue: (state, action) => {
-      state.search = action.payload
+      state.search = action.payload;
     },
     getUsers: (state, action) => {
-      state.users = action.payload
+      state.users = action.payload;
     },
     setCurrentAddImages: (state, action) => {
-      state.currentAddImages = action.payload
+      state.currentAddImages = action.payload;
     },
     setUserCard: (state, action) => {
-      state.userCard = action.payload
+      state.userCard = action.payload;
     },
   },
-})
+});
 
 export const { getAllCard, getCurrentAdd, getSearchValue, getUsers, setCurrentAddImages, setUserCard } =
-cardSlice.actions
+cardSlice.actions;
 
-export default cardSlice.reducer
+export default cardSlice.reducer;

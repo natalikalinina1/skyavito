@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useChangeUserPasswordMutation } from '../../../features/users/usersApi';
-import { isModalOpen } from "../../../features/modal/modalSlice.js";
+import { isModalOpen } from '../../../features/modal/modalSlice.js';
 import { setCurrentUserPassword } from'../../../features/users/usersSlice.js';
-import * as S from "./authForm.styled";
-import Input from "../../InputForm/InputForm.jsx";
-import Button from "../../Buttons/Button";
-import { Preloader } from '../../../styles/preloader.styles.js';
+import * as S from './authForm.styled';
+import Input from '../../InputForm/InputForm.jsx';
+import Button from '../../Buttons/Button';
+import { Preloader } from '../../../styles/preloader.styles.jsx';
 
 const ChangePasswordModal = () => {
   const dispatch = useDispatch();
@@ -43,30 +43,30 @@ const ChangePasswordModal = () => {
 
   return  (
         
-        <S.Form onSubmit={handleSubmit}>
-        <S.LogoContainer>
-          <S.Logo src="/img/logo_modal.png" />
-        </S.LogoContainer>
-            <Input
-              placeholder={"Введите старый пароль"}
-              type="password"
-              id="oldPassword"
-              value={oldPassword}
-              onChange={handleOldPasswordChange}
-            />
+    <S.Form onSubmit={handleSubmit}>
+      <S.LogoContainer>
+        <S.Logo src="/img/logo_modal.png" />
+      </S.LogoContainer>
+      <Input
+        placeholder={'Введите старый пароль'}
+        type="password"
+        id="oldPassword"
+        value={oldPassword}
+        onChange={handleOldPasswordChange}
+      />
 
-            <Input
-            placeholder={"Введите новый пароль"}
-              type="password"
-              id="newPassword"
-              value={newPassword}
-              onChange={handleNewPasswordChange}
-            />
-          {errorMessage && <p>{errorMessage}</p>}
-          <Button type="submit" margin="20px 0 0 0" width="278px">
-            {isLoading ? <Preloader /> : 'Изменить пароль'}
-          </Button>
-        </S.Form>
+      <Input
+        placeholder={'Введите новый пароль'}
+        type="password"
+        id="newPassword"
+        value={newPassword}
+        onChange={handleNewPasswordChange}
+      />
+      {errorMessage && <p>{errorMessage}</p>}
+      <Button type="submit" margin="20px 0 0 0" width="278px">
+        {isLoading ? <Preloader /> : 'Изменить пароль'}
+      </Button>
+    </S.Form>
    
   );
 };

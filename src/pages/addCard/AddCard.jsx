@@ -1,18 +1,18 @@
-import * as S from "./addCard.styled";
-import Button from "../../components/Buttons/Button";
-import ButtonWithPhone from "../../components/Buttons/ButtonWithPhone";
-import Modal from "../../components/Modals/Modal/Modal";
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { BASE_URL } from "../../features/api/apiSlice";
-import { useGetReviewByIdQuery } from "../../features/reviews/reviewApi";
-import { getReviews } from "../../features/reviews/reviewSlice";
-import { getReviewsLength } from "./utils";
-import { getModal, isModalOpen } from "../../features/modal/modalSlice";
-import { setCurrentAddImages } from "../../features/card/cardSlice";
-import { useDeleteAddMutation } from "../../features/card/cardApi";
-import createdOn from "../../components/Card/utils";
+import * as S from './addCard.styled';
+import Button from '../../components/Buttons/Button';
+import ButtonWithPhone from '../../components/Buttons/ButtonWithPhone';
+import Modal from '../../components/Modals/Modal/Modal';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { BASE_URL } from '../../features/api/apiSlice';
+import { useGetReviewByIdQuery } from '../../features/reviews/reviewApi';
+import { getReviews } from '../../features/reviews/reviewSlice';
+import { getReviewsLength } from './utils';
+import { getModal, isModalOpen } from '../../features/modal/modalSlice';
+import { setCurrentAddImages } from '../../features/card/cardSlice';
+import { useDeleteAddMutation } from '../../features/card/cardApi';
+import createdOn from '../../components/Card/utils';
 
 const AddCard = () => {
   const { id } = useParams();
@@ -33,8 +33,9 @@ const AddCard = () => {
     //после удаления перенаправляет на страницу пользователя
     try {
       deleteAdd(id);
-      navigate("/profile");
+      navigate('/profile');
     } catch (err) {
+      // eslint-disable-next-line no-undef
       console.log(err);
     }
   };
@@ -58,6 +59,7 @@ const AddCard = () => {
     if (isSuccess) {
       dispatch(getReviews(reviews));
     } else if (isError) {
+      // eslint-disable-next-line no-undef
       console.log(error);
     }
   }, [dispatch, isSuccess, reviews, isError, error]);
@@ -91,7 +93,7 @@ const AddCard = () => {
 
       <S.AddCardDetails>
         <S.AddImages>
-        {addImages?.length > 0 ? (
+          {addImages?.length > 0 ? (
             addImages?.map((image, i) => {
               return (
                 <img
@@ -114,7 +116,7 @@ const AddCard = () => {
             <span
               onClick={() => {
                 dispatch(isModalOpen(true));
-                dispatch(getModal("reviews"));
+                dispatch(getModal('reviews'));
               }}
             >
               {getReviewsLength(currentReviews?.length)}
@@ -126,9 +128,9 @@ const AddCard = () => {
           {isCurrentUser ? (
             <>
               <Button
-                margin={"0 10px 10px 0"}
+                margin={'0 10px 10px 0'}
                 onClick={() => {
-                  dispatch(getModal("update-modal"));
+                  dispatch(getModal('update-modal'));
                   dispatch(isModalOpen(true));
                 }}
               >

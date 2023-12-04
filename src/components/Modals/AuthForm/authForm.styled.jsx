@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Form = styled.form`
 
@@ -15,10 +15,10 @@ export const Form = styled.form`
     color: salmon;
   }
 
-`
-export const LogoContainer = styled.div``
+`;
+export const LogoContainer = styled.div``;
 
 export const Logo = styled.img`
   width: 140px;
   height: 21px;
-`
+`;

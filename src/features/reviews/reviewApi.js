@@ -1,4 +1,4 @@
-import { apiSlice } from '../api/apiSlice'
+import { apiSlice } from '../api/apiSlice';
 
 export const reviewApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -19,6 +19,6 @@ export const reviewApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Review'],
     }),
   }),
-})
+});
 
-export const { useGetAllReviewsQuery,useGetReviewByIdQuery, useAddReviewMutation} = reviewApi
+export const { useGetAllReviewsQuery,useGetReviewByIdQuery, useAddReviewMutation} = reviewApi;

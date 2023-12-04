@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   position: fixed;
@@ -8,7 +8,7 @@ export const ModalContainer = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
   z-index: 1000;
-`
+`;
 
 export const Content = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export const Content = styled.div`
   z-index: 1000;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 12px;
-`
+`;
 
 export const CloseButton = styled.div`
   svg {
@@ -36,4 +36,4 @@ export const CloseButton = styled.div`
       fill: ${({ theme }) => theme.colors.primaryBlue};
     }
   }
-`
+`;

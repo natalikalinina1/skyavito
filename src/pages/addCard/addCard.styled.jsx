@@ -1,12 +1,12 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const AddCardDetails = styled.div`
   margin-bottom: 60px;
   margin-top: 35px;
   display: flex;
   gap: 60px;
-`
+`;
 
 export const AddImages = styled.div`
   width: 480px;
@@ -27,7 +27,7 @@ export const AddImages = styled.div`
     background: ${({ theme }) => theme.colors.imgBackGround};
     cursor: unset;
   }
-`
+`;
 
 export const AddDetails = styled.div`
   h1 {
@@ -48,7 +48,7 @@ export const AddDetails = styled.div`
     margin: 0 0 20px 0;
   }
 
-`
+`;
 
 export const AddItemInfo = styled.div`
   margin: 0 0 34px 0;
@@ -60,7 +60,7 @@ export const AddItemInfo = styled.div`
     color: ${({ theme }) => theme.colors.primaryBlue};
     cursor: pointer;
   }
-`
+`;
 
 export const Text = styled.p`
   font-weight: 400;
@@ -68,7 +68,7 @@ export const Text = styled.p`
   line-height: 130%;
   color: ${({ theme }) => theme.colors.graniteGray};
   margin: 0 0 4px 0;
-`
+`;
 
 export const Seller = styled.div`
   margin: 34px 0 0 0;
@@ -76,14 +76,14 @@ export const Seller = styled.div`
   display: flex;
   flex-direction: row;
   gap: 12px;
-`
+`;
 
 export const SellerLink = styled(Link)`
   font-weight: 600;
   font-size: 20px;
   line-height: 130%;
   color:  ${({ theme }) => theme.colors.primaryBlue};
-`
+`;
 
 export const SellerImg = styled.img`
   width: 40px;
@@ -91,7 +91,7 @@ export const SellerImg = styled.img`
   border-radius: 50%;
 
   background: ${({ theme }) => theme.colors.imgBackGround};
-`
+`;
 
 export const AddDescription = styled.div`
 margin-bottom: 100px;
@@ -110,4 +110,4 @@ margin-bottom: 100px;
 
     max-width: 792px;
   }
-`
+`;

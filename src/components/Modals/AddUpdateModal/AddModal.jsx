@@ -1,15 +1,16 @@
-import Input from "../../InputForm/InputForm";
-import Button from "../../Buttons/Button";
-import TextArea from "../../InputForm/TextArea";
-import * as S from "./addUpdateModal.styled";
+/* eslint-disable no-undef */
+import Input from '../../InputForm/InputForm';
+import Button from '../../Buttons/Button';
+import TextArea from '../../InputForm/TextArea';
+import * as S from './addUpdateModal.styled';
 import {
   useCreateAddMutation,
   useCreateAddWithNoImagesMutation,
-} from "../../../features/card/cardApi";
-import { useState, useEffect } from "react";
-import { isModalOpen } from "../../../features/modal/modalSlice";
-import { useDispatch } from "react-redux";
-import { Preloader } from "../../../styles/preloader.styles";
+} from '../../../features/card/cardApi';
+import { useState, useEffect } from 'react';
+import { isModalOpen } from '../../../features/modal/modalSlice';
+import { useDispatch } from 'react-redux';
+import { Preloader } from '../../../styles/preloader.styles';
 
 const AddModal = () => {
   const imgLimit = 5;
@@ -30,8 +31,8 @@ const AddModal = () => {
   const [imgQuality, setImgQuality] = useState(0);
   const [preview, setPreview] = useState([]);
   const [values, setValues] = useState({
-    title: "",
-    description: "",
+    title: '',
+    description: '',
     files: [],
     price: 0,
   });
@@ -39,7 +40,7 @@ const AddModal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (values.title !== "") {
+    if (values.title !== '') {
       try {
         const formData = new FormData();
 
@@ -47,7 +48,7 @@ const AddModal = () => {
           values.description
         }&price=${Number(values.price)}`;
 
-        values.files?.forEach((picture) => formData.append("files", picture));
+        values.files?.forEach((picture) => formData.append('files', picture));
 
         const data = {
           query,
@@ -120,9 +121,9 @@ const AddModal = () => {
       <S.Heading>Название</S.Heading>
       <Input
         type="text"
-        width={"100%"}
+        width={'100%'}
         placeholder="Введите название"
-        name={"title"}
+        name={'title'}
         onChange={(event) => {
           setValues({ ...values, title: event.target.value });
           setIsDisable(false);
@@ -132,10 +133,10 @@ const AddModal = () => {
 
       <S.Heading>Описание</S.Heading>
       <TextArea
-        width={"100%"}
-        height={"200px"}
+        width={'100%'}
+        height={'200px'}
         placeholder="Введите описание"
-        name={"description"}
+        name={'description'}
         onChange={(event) => {
           setValues({ ...values, description: event.target.value });
           setIsDisable(false);
@@ -179,8 +180,8 @@ const AddModal = () => {
       <S.Price>
         <Input
           type="number"
-          width={"200px"}
-          name={"price"}
+          width={'200px'}
+          name={'price'}
           onChange={(event) => {
             setValues({ ...values, price: Number(event.target.value) });
             setIsDisable(false);
@@ -189,14 +190,14 @@ const AddModal = () => {
       </S.Price>
 
       <Button
-        margin={"10px 0 0 0"}
+        margin={'10px 0 0 0'}
         disabled={isDisable}
         onClick={(event) => handleSubmit(event)}
       >
         {isCreateLoading || isCreateWithNoCardLoading ? (
           <Preloader />
         ) : (
-          "Опубликовать"
+          'Опубликовать'
         )}
       </Button>
     </S.StyledAddModal>

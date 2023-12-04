@@ -1,33 +1,34 @@
-import Input from "../../InputForm/InputForm.jsx";
-import Button from "../../Buttons/Button.jsx";
-import ButtonSignUp from "../../Buttons/ButtonSignUp.jsx";
-import * as S from "./authForm.styled";
-import { getModal, isModalOpen } from "../../../features/modal/modalSlice.js";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { useSignUserUpMutation } from "../../../features/auth/authApi.js";
-import { useNavigate } from "react-router-dom";
-import { setUser } from "../../../features/auth/authSlice.js";
-import { Preloader } from "../../../styles/preloader.styles.js";
+/* eslint-disable no-undef */
+import React from 'react';
+import Input from '../../InputForm/InputForm.jsx';
+import Button from '../../Buttons/Button.jsx';
+import ButtonSignUp from '../../Buttons/ButtonSignUp.jsx';
+import * as S from './authForm.styled.jsx';
+import { getModal, isModalOpen } from '../../../features/modal/modalSlice.js';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useSignUserUpMutation } from '../../../features/auth/authApi.js';
+import { useNavigate } from 'react-router-dom';
+import { setUser } from '../../../features/auth/authSlice.js';
+import { Preloader } from '../../../styles/preloader.styles.jsx';
+
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState({
-    password: "",
-    role: "user",
-    email: "",
-    name: "",
-    surname: "",
-    phone: "",
-    city: "",
+    password: '',
+    role: 'user',
+    email: '',
+    name: '',
+    surname: '',
+    phone: '',
+    city: '',
   });
-
-  const [repeatPswd, setRepeatPswd] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [repeatPswd, setRepeatPswd] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const [signUp, { isLoading }] = useSignUserUpMutation();
 
@@ -36,45 +37,44 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (nameError !== "") {
-      setErrorMessage(nameError);
-    } else if (passwordError !== "") {
+    if (passwordError !== '') {
       setErrorMessage(passwordError);
-    } else if (userInfo.email === "" && userInfo.password === "") {
-      setErrorMessage("Введите email и пароль");
-    } else if (userInfo.email === "") {
-      setErrorMessage("Введите email");
-    } else if (userInfo.password === "") {
-      setErrorMessage("Введите пароль");
+    } else if (userInfo.email === '' && userInfo.password === '') {
+      setErrorMessage('Введите email и пароль');
+    } else if (userInfo.email === '') {
+      setErrorMessage('Введите email');
+    } else if (userInfo.password === '') {
+      setErrorMessage('Введите пароль');
     } else {
       try {
         if (isValid) {
           await signUp({ ...userInfo }).unwrap();
-
           setErrorMessage(null);
           setUserInfo({
-            password: "",
-            role: "user",
-            email: "",
-            name: "",
-            surname: "",
-            phone: "",
-            city: "",
+            password: '',
+            role: 'user',
+            email: '',
+            name: '',
+            surname: '',
+            phone: '',
+            city: '',
           });
-          setRepeatPswd("");
+          setRepeatPswd('');
           dispatch(setUser(true));
 
           dispatch(isModalOpen(false));
-          navigate("/profile");
+          dispatch(setUser(true));
+          navigate('/profile');
         } else {
-          setErrorMessage("Пароли не совпадают");
+          setErrorMessage('Пароли не совпадают');
         }
       } catch (err) {
         console.log(err);
-        setErrorMessage("Произошла ошибка");
+        setErrorMessage('Произошла ошибка');
       }
     }
   };
+
   return (
     <S.Form onSubmit={(event) => handleSubmit(event)}>
       <S.LogoContainer>
@@ -88,7 +88,7 @@ const SignUp = () => {
             email: event.target.value,
           })
         }
-        placeholder={"Email"}
+        placeholder={'Email'}
         type="email"
         name="email"
         width="278px"
@@ -99,16 +99,16 @@ const SignUp = () => {
         type="password"
         onChange={(event) => {
           if (event.target.value.length < 6) {
-            setPasswordError("Пароль должен быть не менее чем из 6 символов");
+            setPasswordError('Пароль должен быть не менее чем из 6 символов');
           } else {
-            setPasswordError("");
+            setPasswordError('');
             setUserInfo({
               ...userInfo,
               password: event.target.value,
             });
           }
         }}
-        placeholder={"Пароль"}
+        placeholder={'Пароль'}
         name="password"
         width="278px"
         required
@@ -117,24 +117,19 @@ const SignUp = () => {
       <Input
         type="password"
         onChange={(event) => setRepeatPswd(event.target.value)}
-        placeholder={"Повторите пароль"}
+        placeholder={'Повторите пароль'}
         width="278px"
         required
       />
 
       <Input
         onChange={(event) => {
-          if (event.target.value.length < 2) {
-            setNameError("Имя должно состоять не менее чем из 2 символов");
-          } else {
-            setNameError("");
-            setUserInfo({
-              ...userInfo,
-              name: event.target.value,
-            });
-          }
+          setUserInfo({
+            ...userInfo,
+            name: event.target.value,
+          });
         }}
-        placeholder={"Имя (необязательно)"}
+        placeholder={'Имя (необязательно)'}
         name="name"
         width="278px"
       />
@@ -146,7 +141,7 @@ const SignUp = () => {
             surname: event.target.value,
           })
         }
-        placeholder={"Фамилия (необязательно)"}
+        placeholder={'Фамилия (необязательно)'}
         name="surname"
         width="278px"
       />
@@ -158,7 +153,7 @@ const SignUp = () => {
             city: event.target.value,
           })
         }
-        placeholder={"Город (необязательно)"}
+        placeholder={'Город (необязательно)'}
         name="city"
         width="278px"
       />
@@ -166,15 +161,15 @@ const SignUp = () => {
       <p>{errorMessage}</p>
 
       <Button type="submit" margin="60px 0 20px 0" width="278px">
-        {isLoading ? <Preloader /> : "Зарегистрироваться"}{" "}
+        {isLoading ? <Preloader /> : 'Зарегистрироваться'}{' '}
       </Button>
       <ButtonSignUp
         type="button"
         onClick={() => {
-          dispatch(getModal("login"));
+          dispatch(getModal('login'));
         }}
       >
-        Войти{" "}
+        Войти{' '}
       </ButtonSignUp>
     </S.Form>
   );

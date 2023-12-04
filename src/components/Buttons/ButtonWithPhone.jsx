@@ -1,9 +1,9 @@
-import * as S  from './buttons.styled.js'
-import { useState } from 'react'
-import { getPhoneMasked , formatPhone } from './utils.js'
+import * as S  from './buttons.styled.jsx';
+import { useState } from 'react';
+import { getPhoneMasked , formatPhone } from './utils.js';
 
 const ButtonWithPhone = ({ phoneNumber }) => {
-  const [showPhoneNumber, setShowPhoneNumber] = useState(false)
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
 
   return (
     <S.StyledButtonWithPhone onClick={() => setShowPhoneNumber((prev) => !prev)}>
@@ -19,7 +19,7 @@ const ButtonWithPhone = ({ phoneNumber }) => {
         </>
       )}
     </S.StyledButtonWithPhone>
-  )
-}
+  );
+};
 
-export default ButtonWithPhone
+export default ButtonWithPhone;

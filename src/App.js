@@ -3,15 +3,15 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from "react-router-dom";
-import MainPage from "./pages/main/MainPage";
-import Profile from "./pages/profile/Profile";
-import Layout from "./layouts/Layout";
-import AddCard from "./pages/addCard/AddCard";
-import NotFound from "./pages/notFound/NotFound";
-import Seller from "./pages/seller/Seller";
-import RefreshToken from "./features/api/refreshToken";
-import { Suspense } from 'react'
+} from 'react-router-dom';
+import MainPage from './pages/main/MainPage';
+import Profile from './pages/profile/Profile';
+import Layout from './layouts/Layout';
+import AddCard from './pages/addCard/AddCard';
+import NotFound from './pages/notFound/NotFound';
+import Seller from './pages/seller/Seller';
+import RefreshToken from './features/api/refreshToken';
+import { Suspense } from 'react';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,9 +28,9 @@ const router = createBrowserRouter(
 function App() {
   RefreshToken();
   return ( <Suspense fallback={null}>
-  <RouterProvider router={router} />
-</Suspense>
-)
+    <RouterProvider router={router} />
+  </Suspense>
+  );
 }
 
 export default App;

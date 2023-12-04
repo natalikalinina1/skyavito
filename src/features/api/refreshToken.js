@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setAccessToken, setRefreshToken, logUserOut } from "../auth/authSlice";
-import { useUpdateTokensMutation } from "../auth/authApi";
+/* eslint-disable no-undef */
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setAccessToken, setRefreshToken, logUserOut } from '../auth/authSlice';
+import { useUpdateTokensMutation } from '../auth/authApi';
 
 export default function RefreshToken() {
   const dispatch = useDispatch();

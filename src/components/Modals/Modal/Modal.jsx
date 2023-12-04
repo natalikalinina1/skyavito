@@ -1,14 +1,14 @@
-import * as S from "./modal.styled";
-import Cross from "../../Logo/Cross";
-import ReactDOM from "react-dom";
-import Login from "../AuthForm/Login";
-import SignUp from "../AuthForm/SignUp";
-import AddModal from "../AddUpdateModal/AddModal";
-import Reviews from "../ReviewModal/Reviews";
-import { isModalOpen } from "../../../features/modal/modalSlice";
-import { useDispatch } from "react-redux";
-import UpdateModal from "../AddUpdateModal/UpdateModal";
-import ChangePasswordModal from "../AuthForm/ChangePassword";
+import * as S from './modal.styled';
+import Cross from '../../Logo/Cross';
+import ReactDOM from 'react-dom';
+import Login from '../AuthForm/Login';
+import SignUp from '../AuthForm/SignUp';
+import AddModal from '../AddUpdateModal/AddModal';
+import Reviews from '../ReviewModal/Reviews';
+import { isModalOpen } from '../../../features/modal/modalSlice';
+import { useDispatch } from 'react-redux';
+import UpdateModal from '../AddUpdateModal/UpdateModal';
+import ChangePasswordModal from '../AuthForm/ChangePassword';
 
 const Modal = ({ modal, reviews }) => {
   const dispatch = useDispatch();
@@ -22,15 +22,16 @@ const Modal = ({ modal, reviews }) => {
         </S.CloseButton>
       </S.ModalContainer>
       <S.Content>
-        {modal === "login" && <Login />}
-        {modal === "sign-up" && <SignUp />}
-        {modal === "add-modal" && <AddModal />}
-        {modal === "update-modal" && <UpdateModal />}
-        {modal === "reviews" && <Reviews reviews={reviews} />}
-        {modal === "change-modal" && <ChangePasswordModal />}
+        {modal === 'login' && <Login />}
+        {modal === 'sign-up' && <SignUp />}
+        {modal === 'add-modal' && <AddModal />}
+        {modal === 'update-modal' && <UpdateModal />}
+        {modal === 'reviews' && <Reviews reviews={reviews} />}
+        {modal === 'change-modal' && <ChangePasswordModal />}
       </S.Content>
     </>,
-    document.getElementById("portal") // рендер компонентов с id 'portal'
+    // eslint-disable-next-line no-undef
+    document.getElementById('portal') // рендер компонентов с id 'portal'
   );
 };
 

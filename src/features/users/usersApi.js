@@ -1,4 +1,4 @@
-import { apiSlice } from '../api/apiSlice'
+import { apiSlice } from '../api/apiSlice';
 
 export const usersApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -30,14 +30,14 @@ export const usersApi = apiSlice.injectEndpoints({
       invalidatesTags: ['User'],
     }),
     changeUserPassword: builder.mutation({
-      query: (passwordData) => ({
+      query: (body) => ({
         url: 'user/password',
         method: 'PUT',
-        body: passwordData,
+        body,
       }),
     }),
   }),
-})
+});
 
 export const {
   useGetCurrentUserQuery,
@@ -45,4 +45,4 @@ export const {
   useChangeUserMutation,
   useUploadAvatarMutation,
   useChangeUserPasswordMutation,
-} = usersApi
+} = usersApi;
