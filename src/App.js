@@ -12,11 +12,17 @@ import NotFound from './pages/notFound/NotFound';
 import Seller from './pages/seller/Seller';
 import RefreshToken from './features/api/refreshToken';
 import { Suspense } from 'react';
+import Login from './components/Modals/AuthForm/Login';
+import SignUp from './components/Modals/AuthForm/SignUp';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+     
       <Route index element={<MainPage />} />
+      <Route path="login" element={<Login/>} />
+      <Route path="sign-up" element={<SignUp/>} />
       <Route path="profile" element={<Profile />} />
       <Route path="add/:id" element={<AddCard />} />
       <Route path="seller/:id" element={<Seller />} />

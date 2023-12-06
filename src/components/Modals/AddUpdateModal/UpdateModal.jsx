@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import {
   useChangeAddMutation,
   useDeleteAddImageMutation,
-  useUploadImageToAddMutation,
+
 } from '../../../features/card/cardApi';
 import { useParams } from 'react-router-dom';
 import { getCurrentAdd } from '../../../features/card/cardSlice';
@@ -43,7 +43,6 @@ const UpdateModal = () => {
   ] = useChangeAddMutation();
   const [deleteImage] = useDeleteAddImageMutation();
   
-  const [uploadImage] = useUploadImageToAddMutation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();

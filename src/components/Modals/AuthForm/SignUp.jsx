@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useSignUserUpMutation } from '../../../features/auth/authApi.js';
 import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../../features/auth/authSlice.js';
-import { Preloader } from '../../../styles/preloader.styles.jsx';
+import { Loader } from './Loader.jsx';
 
 
 const SignUp = () => {
@@ -64,7 +64,7 @@ const SignUp = () => {
 
           dispatch(isModalOpen(false));
           dispatch(setUser(true));
-          navigate('/profile');
+          navigate('/login');
         } else {
           setErrorMessage('Пароли не совпадают');
         }
@@ -161,7 +161,7 @@ const SignUp = () => {
       <p>{errorMessage}</p>
 
       <Button type="submit" margin="60px 0 20px 0" width="278px">
-        {isLoading ? <Preloader /> : 'Зарегистрироваться'}{' '}
+        {isLoading ? <Loader/> : 'Зарегистрироваться'}{' '}
       </Button>
       <ButtonSignUp
         type="button"
