@@ -1,8 +1,8 @@
-import * as S from "./notfound.styled";
+import * as S from './notfound.styled';
 
 const NotFound = () => {
     
-  return <S.Title>Страница не найдена!</S.Title>
-}
+  return <S.Title>Страница не найдена!</S.Title>;
+};
 
-export default NotFound
+export default NotFound;

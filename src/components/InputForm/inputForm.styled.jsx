@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const StyledInput = styled.input`
   width: ${({ width }) => width};
@@ -16,7 +16,7 @@ export const StyledInput = styled.input`
   }
   &::placeholder {
     color: ${({ placeholderColor }) =>
-      placeholderColor ? placeholderColor : 'rgba(0, 0, 0, 0.3)'};
+    placeholderColor ? placeholderColor : 'rgba(0, 0, 0, 0.3)'};
   }
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -26,7 +26,7 @@ export const StyledInput = styled.input`
   &[type='number'] {
     -moz-appearance: textfield;
   }
-`
+`;
 
 export const StyledTextArea = styled.textarea`
   width: ${({ width }) => width};
@@ -45,6 +45,6 @@ export const StyledTextArea = styled.textarea`
   }
   &::placeholder {
     color: ${({ placeholderColor }) =>
-      placeholderColor ? placeholderColor : 'rgba(0, 0, 0, 0.3)'};
+    placeholderColor ? placeholderColor : 'rgba(0, 0, 0, 0.3)'};
   }
-`
+`;

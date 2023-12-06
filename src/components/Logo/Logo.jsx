@@ -60,7 +60,7 @@ const Logo = () => {
         </filter>
       </defs>
     </svg>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

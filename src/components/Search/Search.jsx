@@ -1,23 +1,23 @@
-import * as S from "./search.styled";
-import { Link, useLocation, useNavigate  } from "react-router-dom";
-import Button from "../Buttons/Button";
-import Logo from "../Logo/Logo";
-import Input from "../InputForm/InputForm";
-import { useState, useEffect} from 'react'
-import { getSearchValue } from '../../features/card/cardSlice'
-import { useDispatch, useSelector} from 'react-redux'
-import { logUserOut } from '../../features/auth/authSlice'
+import * as S from './search.styled';
+import { Link, useLocation, useNavigate  } from 'react-router-dom';
+import Button from '../Buttons/Button';
+import Logo from '../Logo/Logo';
+import Input from '../InputForm/InputForm';
+import { useState, useEffect} from 'react';
+import { getSearchValue } from '../../features/card/cardSlice';
+import { useDispatch, useSelector} from 'react-redux';
+import { logUserOut } from '../../features/auth/authSlice';
 
 const Search = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const user = useSelector((state) => state.auth?.user)
-  const [search, setSearch] = useState('')
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth?.user);
+  const [search, setSearch] = useState('');
 
   useEffect(() => { //отправка значения поиска в хранилище Redux при изменении этого значения.
-    dispatch(getSearchValue(search))
-  }, [search, dispatch])
+    dispatch(getSearchValue(search));
+  }, [search, dispatch]);
   return (
     <S.SearchContainer>
       <S.LogoDiv>
@@ -26,35 +26,35 @@ const Search = () => {
         </Link>
       </S.LogoDiv>
 
-      {location.pathname === "/" ? (
+      {location.pathname === '/' ? (
         <>
           <Input
-            placeholder={"Поиск по объявлениям"}
-            type={"search"}
-            width={"100%"}
+            placeholder={'Поиск по объявлениям'}
+            type={'search'}
+            width={'100%'}
             onChange={(event) => setSearch(event.target.value)}
           />
 
-           <Button margin={'0 0  0 10px'}>Найти</Button>
+          <Button margin={'0 0  0 10px'}>Найти</Button>
         </>
       ) : (
         <>
-        <Link to="/">
-          <Button margin={'0 0  0 10px'}>Вернуться на главную</Button>
-        </Link>
+          <Link to="/">
+            <Button margin={'0 0  0 10px'}>Вернуться на главную</Button>
+          </Link>
 
-        {user && (
-          <Button
-            margin={'0 0  0 10px'}
-            onClick={() => {
-              dispatch(logUserOut())
-              navigate('/')
-            }}
-          >
+          {user && (
+            <Button
+              margin={'0 0  0 10px'}
+              onClick={() => {
+                dispatch(logUserOut());
+                navigate('/');
+              }}
+            >
             Выйти
-          </Button>
-        )}
-      </>
+            </Button>
+          )}
+        </>
       )}
     </S.SearchContainer>
   );

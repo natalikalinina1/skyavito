@@ -1,6 +1,7 @@
-import * as S from  './inputForm.styled'
-import React from 'react'
+import * as S from  './inputForm.styled';
+import React from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Input = React.forwardRef((props, ref) => {
   return (
     <S.StyledInput
@@ -14,7 +15,7 @@ const Input = React.forwardRef((props, ref) => {
       onClick={props.onClick}
       onChange={props.onChange}
     />
-  )
-})
+  );
+});
 
-export default Input
+export default Input;

@@ -1,15 +1,15 @@
-import * as S from "./reviewsModal.styled";
-import { useSelector } from 'react-redux'
-import { BASE_URL } from '../../../features/api/apiSlice'
-import createdOn from '../../../components/Card/utils'
+import * as S from './reviewsModal.styled';
+import { useSelector } from 'react-redux';
+import { BASE_URL } from '../../../features/api/apiSlice';
+import createdOn from '../../../components/Card/utils';
 
 
 const Review = ({ review }) => {
-  const users = useSelector((state) => state.card?.users)
-  const user = users.filter((user) => user.id === review.author_id)
+  const users = useSelector((state) => state.card?.users);
+  const user = users.filter((user) => user.id === review.author_id);
   const userAvatar = user[0]?.avatar
-  ? `${BASE_URL}${user[0]?.avatar}`
-  : '/img/no_picture.png'
+    ? `${BASE_URL}${user[0]?.avatar}`
+    : '/img/no_picture.png';
 
   return (
     <S.ReviewContainer>
@@ -18,8 +18,8 @@ const Review = ({ review }) => {
       </div>
       <S.ReviewDetails>
         <S.NameDate>
-        <p>{user[0]?.name}</p>
-        <span>
+          <p>{user[0]?.name}</p>
+          <span>
             {createdOn(review?.created_on)}
           </span>
         </S.NameDate>

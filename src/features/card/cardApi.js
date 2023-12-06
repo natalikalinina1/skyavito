@@ -1,4 +1,4 @@
-import { apiSlice } from '../api/apiSlice'
+import { apiSlice } from '../api/apiSlice';
 
 export const cardApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -62,11 +62,11 @@ export const cardApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Card'],
     }),
   }),
-})
+});
 
 export const { useGetAllCardQuery,useGetAddByIdQuery,useCreateAddMutation,
   useCreateAddWithNoImagesMutation,
   useGetCurrentUserCardQuery,
   useDeleteAddMutation,useChangeAddMutation,
   useDeleteAddImageMutation,
-  useUploadImageToAddMutation} = cardApi
+  useUploadImageToAddMutation} = cardApi;

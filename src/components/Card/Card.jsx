@@ -1,5 +1,5 @@
-import CardItem from "./CardItem";
-import * as S from "./card.styled";
+import CardItem from './CardItem';
+import * as S from './card.styled';
 
 const Card = ({ card }) => {
 
@@ -9,8 +9,8 @@ const Card = ({ card }) => {
         key={add.id}
         add={add}
       />
-    )
-  })
-  return <S.CardContainer>{content}</S.CardContainer>
-}
-export default Card
+    );
+  });
+  return <S.CardContainer>{content}</S.CardContainer>;
+};
+export default Card;

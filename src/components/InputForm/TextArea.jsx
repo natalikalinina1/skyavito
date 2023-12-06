@@ -1,4 +1,4 @@
-import * as S from'./inputForm.styled'
+import * as S from'./inputForm.styled';
 
 const TextArea = ({ placeholder, name, id, width, height, onChange  }) => {
   return (
@@ -10,7 +10,7 @@ const TextArea = ({ placeholder, name, id, width, height, onChange  }) => {
       height={height}
       onChange={onChange}
     />
-  )
-}
+  );
+};
 
-export default TextArea
+export default TextArea;
